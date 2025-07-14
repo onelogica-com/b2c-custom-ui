@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <title>Sign In - CRM Portal</title>
+    <title>CRM Portal - Sign In</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="locale" content="en-US">
@@ -14,216 +14,328 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Reset and Base Styles */
+        /* Reset and Base */
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body, html {
             height: 100%;
-            margin: 0;
-            padding: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #030456 0%, #1a0b7a 50%, #2d1b9e 100%);
             overflow-x: hidden;
         }
 
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
-            animation: backgroundMove 20s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        @keyframes backgroundMove {
-            0%, 100% { transform: translateX(0) translateY(0); }
-            33% { transform: translateX(-20px) translateY(-10px); }
-            66% { transform: translateX(10px) translateY(-20px); }
-        }
-
-        /* Hide default background elements */
+        /* Hide default Azure B2C elements */
         #background_branding_container,
         #background_page_overlay {
             display: none !important;
         }
 
-        /* Panel Layout Override */
-        .panel_layout {
-            height: 100vh;
-            width: 100%;
+        /* Main Layout Container */
+        .login-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            min-height: 100%;
             position: relative;
-            z-index: 10;
         }
 
-        .panel_layout_row {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #panel_left {
-            display: none;
-        }
-
-        #panel_center {
-            width: 100%;
-            max-width: 450px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: auto;
-        }
-
-        .panel {
-            background: none;
-            border: none;
-            box-shadow: none;
-            position: relative;
-            width: 100%;
-            height: auto;
-            float: none;
-            overflow: visible;
-        }
-
-        .inner_container {
-            width: 100%;
-            max-height: none;
-            min-height: auto;
-        }
-
-        .api_container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 48px 40px;
-            box-shadow: 0 32px 64px rgba(3, 4, 86, 0.3);
-            animation: slideUp 0.8s ease-out;
+        /* Left Side - Image/Branding */
+        .left-side {
+            flex: 2;
+            background: linear-gradient(135deg, #030456 0%, #1a0b7a 50%, #2d1b9e 100%);
             position: relative;
             overflow: hidden;
-            width: 100%;
-            height: auto;
-            padding-top: 48px;
-            transition: all 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
 
-        .api_container::before {
+        /* Animated Background Elements */
+        .left-side::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #030456, #2d1b9e, #030456);
-            background-size: 200% 100%;
-            animation: shimmer 2s linear infinite;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            animation: backgroundFloat 15s ease-in-out infinite;
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            33% { transform: translateX(-10px) translateY(-15px) rotate(1deg); }
+            66% { transform: translateX(10px) translateY(-10px) rotate(-1deg); }
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Header Styling */
-        #api::before {
-            content: '';
-            display: block;
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #030456, #2d1b9e);
-            border-radius: 50%;
-            margin: 0 auto 24px;
-            position: relative;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        #api::after {
-            content: '✓';
+        /* Floating Shapes */
+        .floating-shapes {
             position: absolute;
-            top: 48px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatShape 8s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .shape:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            top: 30%;
+            right: 30%;
+            animation-delay: 6s;
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
+        }
+
+        /* Left Side Content */
+        .left-content {
+            text-align: center;
             color: white;
-            font-size: 28px;
-            font-weight: bold;
-            z-index: 1;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Add welcome text */
-        #api {
+            z-index: 10;
             position: relative;
-            padding-top: 80px;
+            max-width: 400px;
+            padding: 40px;
         }
 
-        #api > div:first-child::before {
-            content: 'Welcome Back';
-            display: block;
-            font-size: 28px;
+        .logo-container {
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: logoFloat 3s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            color: white;
+        }
+
+        .brand-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .brand-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Right Side - Form */
+        .right-side {
+            flex: 1;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .right-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, transparent 0%, rgba(3, 4, 86, 0.02) 100%);
+            pointer-events: none;
+        }
+
+        /* Panel Override for Azure B2C */
+        .panel_layout {
+            width: 100%;
+            height: 100%;
+            display: block !important;
+        }
+
+        .panel_layout_row {
+            display: block !important;
+            height: 100%;
+        }
+
+        #panel_left {
+            display: none !important;
+        }
+
+        #panel_center {
+            width: 100% !important;
+            padding: 0 !important;
+            height: 100% !important;
+            display: block !important;
+            min-height: 100% !important;
+        }
+
+        .panel {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            position: relative !important;
+            width: 100% !important;
+            height: 100% !important;
+            float: none !important;
+            overflow: visible !important;
+            right: auto !important;
+        }
+
+        .inner_container {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: none !important;
+            min-height: 100% !important;
+        }
+
+        .api_container {
+            width: 100% !important;
+            height: 100% !important;
+            padding: 0 !important;
+            padding-top: 0 !important;
+            background: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            animation: none !important;
+            position: relative !important;
+            display: block !important;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-title {
+            font-size: 32px;
             font-weight: 700;
             color: #1a1a1a;
-            text-align: center;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
         }
 
-        #api > div:first-child::after {
-            content: 'Sign in to your account';
-            display: block;
+        .form-subtitle {
             font-size: 16px;
-            color: #666;
-            text-align: center;
+            color: #6b7280;
             margin-bottom: 32px;
         }
 
         /* Social Login Buttons */
+        .social-section {
+            margin-bottom: 32px;
+        }
+
         .accountButton {
             background: white !important;
             border: 2px solid #e5e7eb !important;
-            border-radius: 12px !important;
-            padding: 14px 20px !important;
-            margin: 6px 0 !important;
+            border-radius: 16px !important;
+            padding: 16px 24px !important;
+            margin: 8px 0 !important;
             width: 100% !important;
             height: auto !important;
             font-size: 15px !important;
-            font-weight: 500 !important;
-            transition: all 0.3s ease !important;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
+            font-weight: 600 !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            text-align: center !important;
             display: flex !important;
-            align-items: center;
-            justify-content: center;
+            align-items: center !important;
+            justify-content: center !important;
             color: #374151 !important;
+            cursor: pointer !important;
+            text-decoration: none !important;
         }
 
         .accountButton::before {
@@ -233,8 +345,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transition: left 0.6s ease;
         }
 
         .accountButton:hover::before {
@@ -242,42 +354,46 @@
         }
 
         .accountButton:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15) !important;
         }
 
         #MicrosoftAccountExchange {
             border-color: #0078d4 !important;
             color: #0078d4 !important;
             background-image: none !important;
-            padding-left: 20px !important;
+            padding-left: 24px !important;
         }
 
         #MicrosoftAccountExchange:hover {
             background: #0078d4 !important;
             color: white !important;
+            border-color: #0078d4 !important;
         }
 
         #MicrosoftAccountExchange::after {
-            content: '⊞ Continue with Microsoft';
+            content: '🏢 Continue with Microsoft';
             font-size: 15px;
+            font-weight: 600;
         }
 
         #LinkedInExchange {
             border-color: #0077b5 !important;
             color: #0077b5 !important;
             background-image: none !important;
-            padding-left: 20px !important;
+            padding-left: 24px !important;
         }
 
         #LinkedInExchange:hover {
             background: #0077b5 !important;
             color: white !important;
+            border-color: #0077b5 !important;
         }
 
         #LinkedInExchange::after {
             content: '💼 Continue with LinkedIn';
             font-size: 15px;
+            font-weight: 600;
         }
 
         /* Hide other social providers */
@@ -291,32 +407,59 @@
             display: none !important;
         }
 
-        /* Form Styling */
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
+
+        .divider span {
+            padding: 0 20px;
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 500;
+            background: white;
+        }
+
+        /* Form Inputs */
         .attrEntry {
-            margin-bottom: 20px !important;
+            margin-bottom: 24px !important;
+            position: relative;
         }
 
         .attrEntry label {
             font-size: 14px !important;
-            font-weight: 500 !important;
+            font-weight: 600 !important;
             color: #374151 !important;
             margin-bottom: 8px !important;
             display: block !important;
+            letter-spacing: 0.5px;
         }
 
         .attrEntry input[type="text"],
         .attrEntry input[type="email"],
         .attrEntry input[type="password"] {
             width: 100% !important;
-            padding: 14px 16px !important;
+            padding: 16px 20px !important;
             border: 2px solid #e5e7eb !important;
-            border-radius: 12px !important;
-            font-size: 15px !important;
-            transition: all 0.3s ease !important;
-            background: white !important;
+            border-radius: 16px !important;
+            font-size: 16px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            background: #fafafa !important;
             box-shadow: none !important;
             margin: 0 !important;
             height: auto !important;
+            font-weight: 500 !important;
         }
 
         .attrEntry input[type="text"]:focus,
@@ -324,26 +467,37 @@
         .attrEntry input[type="password"]:focus {
             outline: none !important;
             border-color: #030456 !important;
-            box-shadow: 0 0 0 3px rgba(3, 4, 86, 0.1) !important;
+            background: white !important;
+            box-shadow: 0 0 0 4px rgba(3, 4, 86, 0.1) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .attrEntry input[type="text"]::placeholder,
+        .attrEntry input[type="email"]::placeholder,
+        .attrEntry input[type="password"]::placeholder {
+            color: #9ca3af !important;
+            font-weight: 400 !important;
         }
 
         /* Submit Button */
         #next {
-            background: linear-gradient(135deg, #030456, #2d1b9e) !important;
+            background: linear-gradient(135deg, #030456 0%, #2d1b9e 100%) !important;
             color: white !important;
             border: none !important;
-            padding: 16px !important;
-            border-radius: 12px !important;
+            padding: 18px 32px !important;
+            border-radius: 16px !important;
             font-size: 16px !important;
-            font-weight: 600 !important;
+            font-weight: 700 !important;
             cursor: pointer !important;
-            transition: all 0.3s ease !important;
-            margin-top: 8px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            margin-top: 16px !important;
             width: 100% !important;
             height: auto !important;
             min-width: auto !important;
-            position: relative;
-            overflow: hidden;
+            position: relative !important;
+            overflow: hidden !important;
+            letter-spacing: 0.5px !important;
+            text-transform: uppercase !important;
         }
 
         #next::before {
@@ -353,8 +507,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
         }
 
         #next:hover::before {
@@ -362,187 +516,182 @@
         }
 
         #next:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 12px 30px rgba(3, 4, 86, 0.4) !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 15px 40px rgba(3, 4, 86, 0.4) !important;
         }
 
         #next:active {
-            transform: translateY(0) !important;
+            transform: translateY(-1px) !important;
         }
 
         /* Error Messages */
         .error {
-            background: #fef2f2 !important;
-            border: 1px solid #fecaca !important;
+            background: linear-gradient(135deg, #fef2f2, #fde8e8) !important;
+            border: 1px solid #fca5a5 !important;
             color: #dc2626 !important;
-            padding: 12px 16px !important;
-            border-radius: 8px !important;
+            padding: 16px 20px !important;
+            border-radius: 12px !important;
             font-size: 14px !important;
-            margin-bottom: 20px !important;
-        }
-
-        /* Divider */
-        .divider-text {
-            text-align: center;
-            margin: 32px 0;
-            position: relative;
-            color: #9ca3af;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .divider-text::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: #e5e7eb;
-            z-index: 1;
-        }
-
-        .divider-text span {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 0 16px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Add divider before local account section */
-        .localAccount::before {
-            content: '';
-            display: block;
-            text-align: center;
-            margin: 32px 0;
-            position: relative;
-            color: #9ca3af;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .localAccount::after {
-            content: 'OR';
-            display: block;
-            text-align: center;
-            margin: 32px 0;
-            position: relative;
-            color: #9ca3af;
-            font-size: 14px;
-            font-weight: 500;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 0 16px;
-        }
-
-        .localAccount {
-            position: relative;
-        }
-
-        .localAccount::before {
-            content: '';
-            position: absolute;
-            top: -16px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: #e5e7eb;
-            z-index: 1;
-        }
-
-        /* Links */
-        a {
-            color: #030456 !important;
-            text-decoration: none !important;
+            margin-bottom: 24px !important;
             font-weight: 500 !important;
+            animation: errorSlide 0.3s ease-out !important;
         }
 
-        a:hover {
-            text-decoration: underline !important;
-        }
-
-        /* Company Logo */
-        .companyLogo {
-            display: none !important;
-        }
-
-        /* Working Animation */
-        .working {
-            background: none !important;
-            width: 20px !important;
-            height: 20px !important;
-            border: 2px solid rgba(255,255,255,0.3) !important;
-            border-radius: 50% !important;
-            border-top-color: white !important;
-            animation: spin 1s ease-in-out infinite !important;
-            margin-right: 8px !important;
-            display: inline-block !important;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .api_container {
-                padding: 32px 24px !important;
-                margin: 16px !important;
-                border-radius: 20px !important;
+        @keyframes errorSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
             }
-
-            #panel_center {
-                padding: 16px !important;
-            }
-
-            #api::before {
-                width: 56px !important;
-                height: 56px !important;
-            }
-
-            #api > div:first-child::before {
-                font-size: 24px !important;
-            }
-        }
-
-        /* Additional Animations */
-        .attrEntry {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideUpDelay 0.6s ease-out forwards;
-        }
-
-        .attrEntry:nth-child(1) { animation-delay: 0.2s; }
-        .attrEntry:nth-child(2) { animation-delay: 0.3s; }
-        .attrEntry:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes slideUpDelay {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Focus animations */
+        /* Links */
+        a {
+            color: #030456 !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            transition: color 0.2s ease !important;
+        }
+
+        a:hover {
+            color: #2d1b9e !important;
+            text-decoration: underline !important;
+        }
+
+        /* Loading Animation */
+        .working {
+            width: 20px !important;
+            height: 20px !important;
+            border: 2px solid rgba(255,255,255,0.3) !important;
+            border-radius: 50% !important;
+            border-top-color: white !important;
+            animation: spin 1s linear infinite !important;
+            margin-right: 8px !important;
+            display: inline-block !important;
+            background: none !important;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Company Logo Hide */
+        .companyLogo {
+            display: none !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .login-container {
+                flex-direction: column;
+            }
+
+            .left-side {
+                min-height: 40vh;
+                order: 2;
+            }
+
+            .right-side {
+                order: 1;
+                min-height: 60vh;
+            }
+
+            .left-content {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .brand-title {
+                font-size: 24px;
+            }
+
+            .features-list {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-side {
+                min-height: 30vh;
+                padding: 20px;
+            }
+
+            .right-side {
+                padding: 20px;
+                min-height: 70vh;
+            }
+
+            .form-container {
+                max-width: 100%;
+            }
+
+            .form-title {
+                font-size: 28px;
+            }
+
+            .left-content {
+                padding: 16px;
+            }
+
+            .brand-title {
+                font-size: 20px;
+            }
+
+            .brand-subtitle {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .right-side {
+                padding: 16px;
+            }
+
+            .form-title {
+                font-size: 24px;
+            }
+
+            .accountButton {
+                padding: 14px 20px !important;
+            }
+
+            .attrEntry input[type="text"],
+            .attrEntry input[type="email"],
+            .attrEntry input[type="password"] {
+                padding: 14px 16px !important;
+                font-size: 15px !important;
+            }
+
+            #next {
+                padding: 16px 24px !important;
+                font-size: 15px !important;
+            }
+        }
+
+        /* Animation Delays */
+        .attrEntry:nth-child(1) { animation: slideInRight 0.6s ease-out 0.2s both; }
+        .attrEntry:nth-child(2) { animation: slideInRight 0.6s ease-out 0.3s both; }
+        .attrEntry:nth-child(3) { animation: slideInRight 0.6s ease-out 0.4s both; }
+        #next { animation: slideInRight 0.6s ease-out 0.5s both; }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Focus Within Animation */
         .attrEntry:focus-within {
             transform: scale(1.02);
             transition: transform 0.2s ease;
-        }
-
-        /* Button loading state */
-        #next.loading {
-            pointer-events: none;
-            opacity: 0.8;
-        }
-
-        /* Shake animation for errors */
-        .shake {
-            animation: shake 0.5s ease-in-out;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
     </style>
 </head>
@@ -551,30 +700,72 @@
         <img id="background_background_image" data-tenant-branding-background="true" src="/placeholder.svg" alt="Illustration" aria-hidden="true" />
     </div>
     
-    <div class="panel" id="panel">
-        <table class="panel_layout" role="presentation">
-            <tbody>
-                <tr class="panel_layout_row">
-                    <td id="panel_left"></td>
-                    <td id="panel_center">
-                        <div class="inner_container">
-                            <div class="api_container normaltext">
-                                <img alt="Company Logo" class="companyLogo" style="display: none;" data-tenant-branding-logo="true" />
-                                <div id="api" role="main">
-                                    <!-- Azure B2C will inject content here -->
+    <div class="login-container">
+        <!-- Left Side - Branding -->
+        <div class="left-side">
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            
+            <div class="left-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h1 class="brand-title">CRM Portal</h1>
+                    <p class="brand-subtitle">Manage your customer relationships with powerful tools and insights</p>
+                </div>
+                
+                <ul class="features-list">
+                    <li>Advanced Customer Analytics</li>
+                    <li>Real-time Sales Tracking</li>
+                    <li>Automated Workflow Management</li>
+                    <li>Secure Data Protection</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Side - Form -->
+        <div class="right-side">
+            <div class="panel" id="panel">
+                <table class="panel_layout" role="presentation">
+                    <tbody>
+                        <tr class="panel_layout_row">
+                            <td id="panel_left"></td>
+                            <td id="panel_center">
+                                <div class="inner_container">
+                                    <div class="api_container normaltext">
+                                        <div class="form-container">
+                                            <div class="form-header">
+                                                <h2 class="form-title">Welcome Back</h2>
+                                            
+                                            </div>
+
+                                            <img alt="Company Logo" class="companyLogo" style="display: none;" data-tenant-branding-logo="true" />
+                                            
+                                            <div id="api" role="main">
+                                                <!-- Azure B2C will inject content here -->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
         "use strict";
         
-        // Original Azure B2C script
+        // Original Azure B2C compatibility
         $(document).ready(function () {
             if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
                 var t = document.createElement("style");
@@ -588,41 +779,57 @@
                 $(e).css("padding-top", "100px");
             }
             
-            // Background image handling (disabled for custom design)
-            var o, i = $("#background_background_image"), n = function () {
-                // Custom background is handled by CSS
-            };
-            
-            $("<img>").attr("src", i.attr("src")).on("load", function () {
-                o = this.width / this.height;
-                n();
-            });
-            
-            $(window).resize(function () {
-                n();
-            });
-            
             // Update Microsoft button text
             if (typeof $("#MicrosoftAccountExchange") !== "undefined") {
                 $("#MicrosoftAccountExchange").text("");
             }
             
-            // Remove placeholder attributes for better styling
+            // Remove placeholder attributes
             $("*").removeAttr("placeholder");
         });
 
-        // Enhanced functionality for modern UI
+        // Enhanced functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Add loading state to submit button
+            // Add divider after social buttons
+            function addDivider() {
+                const socialButtons = document.querySelectorAll('.accountButton');
+                if (socialButtons.length > 0 && !document.querySelector('.custom-divider')) {
+                    const lastButton = socialButtons[socialButtons.length - 1];
+                    const divider = document.createElement('div');
+                    divider.className = 'divider custom-divider';
+                    divider.innerHTML = '<span>OR</span>';
+                    lastButton.parentNode.insertBefore(divider, lastButton.nextSibling);
+                }
+            }
+
+            // Enhanced social buttons
+            function enhanceSocialButtons() {
+                const microsoftBtn = document.getElementById('MicrosoftAccountExchange');
+                const linkedinBtn = document.getElementById('LinkedInExchange');
+                
+                if (microsoftBtn) {
+                    microsoftBtn.innerHTML = '';
+                    microsoftBtn.style.backgroundImage = 'none';
+                }
+                
+                if (linkedinBtn) {
+                    linkedinBtn.innerHTML = '';
+                    linkedinBtn.style.backgroundImage = 'none';
+                }
+                
+                addDivider();
+            }
+
+            // Loading state for submit button
             const submitBtn = document.getElementById('next');
             if (submitBtn) {
                 submitBtn.addEventListener('click', function() {
-                    this.classList.add('loading');
-                    this.innerHTML = '<span class="working"></span>Signing in...';
+                    this.innerHTML = '<span class="working"></span>Signing In...';
+                    this.style.pointerEvents = 'none';
                 });
             }
 
-            // Add focus animations to inputs
+            // Input focus animations
             const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
@@ -635,56 +842,47 @@
                 });
             });
 
-            // Add shake animation on errors
+            // Error shake animation
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     if (mutation.type === 'childList') {
                         const errorElements = document.querySelectorAll('.error');
                         if (errorElements.length > 0) {
-                            document.querySelector('.api_container').classList.add('shake');
-                            setTimeout(() => {
-                                document.querySelector('.api_container').classList.remove('shake');
-                            }, 500);
+                            const formContainer = document.querySelector('.form-container');
+                            if (formContainer) {
+                                formContainer.style.animation = 'shake 0.5s ease-in-out';
+                                setTimeout(() => {
+                                    formContainer.style.animation = '';
+                                }, 500);
+                            }
                         }
                     }
                 });
             });
 
-            observer.observe(document.getElementById('api'), {
-                childList: true,
-                subtree: true
-            });
-
-            // Add entrance animations
-            setTimeout(() => {
-                const elements = document.querySelectorAll('.attrEntry, #next');
-                elements.forEach((element, index) => {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateY(20px)';
-                    element.style.animation = `slideUpDelay 0.6s ease-out ${0.1 * index + 0.5}s forwards`;
+            const apiElement = document.getElementById('api');
+            if (apiElement) {
+                observer.observe(apiElement, {
+                    childList: true,
+                    subtree: true
                 });
-            }, 100);
+            }
+
+            // Run enhancements
+            setTimeout(enhanceSocialButtons, 1000);
+            setInterval(enhanceSocialButtons, 2000);
         });
 
-        // Social login enhancements
-        function enhanceSocialButtons() {
-            const microsoftBtn = document.getElementById('MicrosoftAccountExchange');
-            const linkedinBtn = document.getElementById('LinkedInExchange');
-            
-            if (microsoftBtn) {
-                microsoftBtn.innerHTML = '';
-                microsoftBtn.style.backgroundImage = 'none';
+        // Shake animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
             }
-            
-            if (linkedinBtn) {
-                linkedinBtn.innerHTML = '';
-                linkedinBtn.style.backgroundImage = 'none';
-            }
-        }
-
-        // Run enhancements after Azure B2C loads content
-        setTimeout(enhanceSocialButtons, 1000);
-        setInterval(enhanceSocialButtons, 2000);
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
