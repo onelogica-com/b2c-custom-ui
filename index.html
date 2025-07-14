@@ -358,20 +358,20 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.15) !important;
         }
 
-        #MicrosoftAccountExchange {
+        #AzureADiCRMExchange {
             border-color: #0078d4 !important;
             color: #0078d4 !important;
             background-image: none !important;
             padding-left: 24px !important;
         }
 
-        #MicrosoftAccountExchange:hover {
+        #AzureADiCRMExchange:hover {
             background: #0078d4 !important;
             color: white !important;
             border-color: #0078d4 !important;
         }
 
-        #MicrosoftAccountExchange::after {
+        #AzureADiCRMExchange::after {
             content: '🏢 Continue with Microsoft';
             font-size: 15px;
             font-weight: 600;
@@ -447,8 +447,8 @@
         }
 
         .attrEntry input[type="text"],
-        .attrEntry input[type="email"],
-        .attrEntry input[type="password"] {
+        #signInName,
+        #password {
             width: 100% !important;
             padding: 16px 20px !important;
             border: 2px solid #e5e7eb !important;
@@ -463,8 +463,8 @@
         }
 
         .attrEntry input[type="text"]:focus,
-        .attrEntry input[type="email"]:focus,
-        .attrEntry input[type="password"]:focus {
+        #signInName:focus,
+        #password:focus {
             outline: none !important;
             border-color: #030456 !important;
             background: white !important;
@@ -473,14 +473,16 @@
         }
 
         .attrEntry input[type="text"]::placeholder,
-        .attrEntry input[type="email"]::placeholder,
-        .attrEntry input[type="password"]::placeholder {
+        #signInName::placeholder,
+        #password::placeholder {
             color: #9ca3af !important;
             font-weight: 400 !important;
         }
 
         /* Submit Button */
-        #next {
+        #next ,
+        #email_ver_but_send,
+        #continue{
             background: linear-gradient(135deg, #030456 0%, #2d1b9e 100%) !important;
             color: white !important;
             border: none !important;
@@ -500,7 +502,9 @@
             text-transform: uppercase !important;
         }
 
-        #next::before {
+         #next ,
+        #email_ver_but_send,
+        #continue::before {
             content: '';
             position: absolute;
             top: 0;
@@ -511,31 +515,25 @@
             transition: left 0.6s ease;
         }
 
-        #next:hover::before {
+         #next ,
+        #email_ver_but_send,
+        #continue:hover::before {
             left: 100%;
         }
 
-        #next:hover {
+         #next ,
+        #email_ver_but_send,
+        #continue:hover {
             transform: translateY(-3px) !important;
             box-shadow: 0 15px 40px rgba(3, 4, 86, 0.4) !important;
         }
 
-        #next:active {
+         #next ,
+        #email_ver_but_send,
+        #continue:active {
             transform: translateY(-1px) !important;
         }
 
-        /* Error Messages */
-        .error {
-            background: linear-gradient(135deg, #fef2f2, #fde8e8) !important;
-            border: 1px solid #fca5a5 !important;
-            color: #dc2626 !important;
-            padding: 16px 20px !important;
-            border-radius: 12px !important;
-            font-size: 14px !important;
-            margin-bottom: 24px !important;
-            font-weight: 500 !important;
-            animation: errorSlide 0.3s ease-out !important;
-        }
 
         @keyframes errorSlide {
             from {
@@ -659,13 +657,15 @@
             }
 
             .attrEntry input[type="text"],
-            .attrEntry input[type="email"],
-            .attrEntry input[type="password"] {
+            #signInName,
+            #password {
                 padding: 14px 16px !important;
                 font-size: 15px !important;
             }
 
-            #next {
+             #next ,
+        #email_ver_but_send,
+        #continue {
                 padding: 16px 24px !important;
                 font-size: 15px !important;
             }
@@ -750,6 +750,7 @@
                                             
                                             <div id="api" role="main">
                                                 <!-- Azure B2C will inject content here -->
+                           
                                             </div>
                                         </div>
                                     </div>
@@ -780,8 +781,8 @@
             }
             
             // Update Microsoft button text
-            if (typeof $("#MicrosoftAccountExchange") !== "undefined") {
-                $("#MicrosoftAccountExchange").text("");
+            if (typeof $("#AzureADiCRMExchange") !== "undefined") {
+                $("#AzureADiCRMExchange").text("");
             }
             
             // Remove placeholder attributes
@@ -804,7 +805,7 @@
 
             // Enhanced social buttons
             function enhanceSocialButtons() {
-                const microsoftBtn = document.getElementById('MicrosoftAccountExchange');
+                const microsoftBtn = document.getElementById('AzureADiCRMExchange');
                 const linkedinBtn = document.getElementById('LinkedInExchange');
                 
                 if (microsoftBtn) {
