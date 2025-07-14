@@ -12,7 +12,8 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
     <style>
         /* Reset and Base */
         * {
@@ -232,7 +233,9 @@
         .panel_layout {
             width: 100%;
             height: 100%;
-            display: block !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
 
         .panel_layout_row {
@@ -391,7 +394,7 @@
         }
 
         #LinkedInExchange::after {
-            content: '💼 Continue with LinkedIn';
+            content: 'Continue with LinkedIn';
             font-size: 15px;
             font-weight: 600;
         }
@@ -488,7 +491,8 @@
         /* Submit Button */
         #next ,
         #email_ver_but_send,
-        #continue,#cancel{
+        #continue,#cancel,
+        #email_ver_but_resend,#email_ver_but_verify{
             background: linear-gradient(135deg, #030456 0%, #2d1b9e 100%) !important;
             color: white !important;
             border: none !important;
@@ -510,7 +514,8 @@
 
          #next ,
         #email_ver_but_send,
-        #continue,#cancel::before {
+        #continue,#cancel,
+        #email_ver_but_resend,#email_ver_but_verify::before {
             content: '';
             position: absolute;
             top: 0;
@@ -523,20 +528,23 @@
 
          #next ,
         #email_ver_but_send,
-        #continue,#cancel:hover::before {
+        #continue,#cancel,
+        #email_ver_but_resend,#email_ver_but_verify:hover::before {
             left: 0%;
         }
 
-         #next ,
+       #next ,
         #email_ver_but_send,
-        #continue,#cancel:hover {
+        #continue,#cancel,
+        #email_ver_but_resend,#email_ver_but_verify:hover {
             transform: translateY(-3px) !important;
             box-shadow: 0 15px 40px rgba(3, 4, 86, 0.4) !important;
         }
 
-         #next ,
+       #next ,
         #email_ver_but_send,
-        #continue,#cancel:active {
+        #continue,#cancel,
+        #email_ver_but_resend,#email_ver_but_verify:active {
             transform: translateY(-1px) !important;
         }
    .helpLink{
@@ -891,7 +899,15 @@
                 20%, 40%, 60%, 80% { transform: translateX(5px); }
             }
         `;
-        document.head.appendChild(style);
+        document.head.appendChild(style);\
+        const linkedinBtn = document.getElementById('LinkedInExchange');
+if (linkedinBtn) {
+    linkedinBtn.innerHTML = `<i class="fab fa-linkedin" style="margin-right: 10px;"></i> Continue with LinkedIn`;
+}
+        const microsoftBtn = document.getElementById('AzureADiCRMExchange');
+        if (microsoftBtn) {
+            microsoftBtn.innerHTML = `<i class="fab fa-microsoft" style="margin-right: 10px;"></i> Continue with Microsoft`;
+        }
     </script>
 </body>
 </html>
