@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign In / Sign Up - Azure AD B2C</title>
 
-  <!-- Microsoft recommended branding -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -34,10 +33,6 @@
       text-align: center;
     }
 
-    .b2c-header {
-      margin-bottom: 1.5rem;
-    }
-
     .b2c-header h1 {
       font-size: 1.8rem;
       color: #0078d4;
@@ -47,16 +42,64 @@
     .b2c-header p {
       font-size: 0.95rem;
       color: #666;
+      margin-bottom: 1.5rem;
     }
 
     #api {
-      margin-top: 1rem;
+      text-align: left;
+    }
+
+    /* Improve input fields and button */
+    input[type="email"],
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0078d4;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #005fa3;
     }
 
     .b2c-footer {
       margin-top: 2rem;
       font-size: 0.75rem;
       color: #aaa;
+    }
+
+    /* Optional: Social icons placeholder */
+    .social-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #fafafa;
+    }
+
+    .social-button img {
+      width: 20px;
+      height: 20px;
     }
 
     @media (max-width: 600px) {
@@ -78,15 +121,24 @@
       <p>Please sign in or sign up to continue</p>
     </div>
 
-    <!-- B2C injects content here -->
-    <!-- Place inside .b2c-wrapper -->
-<div id="api"></div>
-<div id="apiLoader" style="display: none;"></div>
-<div id="apiError" style="display: none;"></div>
+    <!-- Social login placeholders (Azure B2C replaces divs with actual buttons) -->
+    <div class="social-button" id="api-signin-google">
+      <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google" />
+      <span>Continue with Google</span>
+    </div>
 
+    <div class="social-button" id="api-signin-facebook">
+      <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook" />
+      <span>Continue with Facebook</span>
+    </div>
+
+    <!-- B2C will inject the login form here -->
+    <div id="api"></div>
+    <div id="apiLoader" style="display: none;"></div>
+    <div id="apiError" style="display: none;"></div>
 
     <div class="b2c-footer">
-      &copy; <span id="year"></span> Onelogica. Powered by Azure AD B2C.
+      &copy; <span id="year"></span> Onelogica. Powered by Azure AD B2C.12
     </div>
   </div>
 
