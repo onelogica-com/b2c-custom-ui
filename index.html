@@ -3,143 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign In / Sign Up - Azure AD B2C</title>
+  <title>ICRM Login</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Microsoft Ocean Blue Theme -->
+  <link rel="stylesheet" href="https://b2cstaticcdn.azureedge.net/ui/v2/ocean_blue.css" />
+
+  <!-- Optional Custom Styling -->
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      font-family: "Segoe UI", sans-serif;
     }
 
-    .b2c-wrapper {
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 500px;
+    .b2c-header {
       text-align: center;
+      margin-bottom: 1rem;
     }
 
     .b2c-header h1 {
-      font-size: 1.8rem;
       color: #0078d4;
-      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      margin: 0;
     }
 
     .b2c-header p {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 1.5rem;
-    }
-
-    #api {
-      text-align: left;
-    }
-
-    /* Improve input fields and button */
-    input[type="email"],
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px 14px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #0078d4;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background-color: #005fa3;
+      color: #444;
+      margin-top: 0.5rem;
     }
 
     .b2c-footer {
+      text-align: center;
       margin-top: 2rem;
       font-size: 0.75rem;
-      color: #aaa;
-    }
-
-    /* Optional: Social icons placeholder */
-    .social-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      cursor: pointer;
-      background-color: #fafafa;
-    }
-
-    .social-button img {
-      width: 20px;
-      height: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .b2c-wrapper {
-        margin: 1rem;
-        padding: 1.5rem;
-      }
-
-      .b2c-header h1 {
-        font-size: 1.5rem;
-      }
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <div class="b2c-wrapper">
-    <div class="b2c-header">
-      <h1>Welcome to ICRM</h1>
-      <p>Please sign in or sign up to continue</p>
-    </div>
+  <div class="b2c-header">
+    <h1>Welcome to ICRM</h1>
+    <p>Please sign in or sign up to continue</p>
+  </div>
 
-    <!-- Social login placeholders (Azure B2C replaces divs with actual buttons) -->
-    <div class="social-button" id="api-signin-google">
-      <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google" />
-      <span>Continue with Google</span>
-    </div>
+  <!-- Azure AD B2C Injects Forms Here -->
+  <div id="api"></div>
+  <div id="apiLoader" style="display:none"></div>
+  <div id="apiError" style="display:none"></div>
 
-    <div class="social-button" id="api-signin-facebook">
-      <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook" />
-      <span>Continue with Facebook</span>
-    </div>
-
-    <!-- B2C will inject the login form here -->
-    <div id="api"></div>
-    <div id="apiLoader" style="display: none;"></div>
-    <div id="apiError" style="display: none;"></div>
-
-    <div class="b2c-footer">
-      &copy; <span id="year"></span> Onelogica. Powered by Azure AD B2C.12
-    </div>
+  <div class="b2c-footer">
+    &copy; <span id="year"></span> Onelogica. Powered by Azure AD B2C.
   </div>
 
   <script>
