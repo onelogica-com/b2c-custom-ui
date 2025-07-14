@@ -459,7 +459,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
             background: #fafafa !important;
             box-shadow: none !important;
-            margin: 0 !important;
+            margin-top: 10px !important;
             height: auto !important;
             font-weight: 500 !important;
         }
@@ -488,7 +488,7 @@
         /* Submit Button */
         #next ,
         #email_ver_but_send,
-        #continue{
+        #continue,#cancel{
             background: linear-gradient(135deg, #030456 0%, #2d1b9e 100%) !important;
             color: white !important;
             border: none !important;
@@ -510,7 +510,7 @@
 
          #next ,
         #email_ver_but_send,
-        #continue::before {
+        #continue,#cancel::before {
             content: '';
             position: absolute;
             top: 0;
@@ -523,20 +523,20 @@
 
          #next ,
         #email_ver_but_send,
-        #continue:hover::before {
+        #continue,#cancel:hover::before {
             left: 0%;
         }
 
          #next ,
         #email_ver_but_send,
-        #continue:hover {
+        #continue,#cancel:hover {
             transform: translateY(-3px) !important;
             box-shadow: 0 15px 40px rgba(3, 4, 86, 0.4) !important;
         }
 
          #next ,
         #email_ver_but_send,
-        #continue:active {
+        #continue,#cancel:active {
             transform: translateY(-1px) !important;
         }
    .helpLink{
@@ -701,6 +701,9 @@
             transform: scale(1.02);
             transition: transform 0.2s ease;
         }
+        .error{
+            color: red !important;
+        }
     </style>
 </head>
 <body>
@@ -749,10 +752,7 @@
                                 <div class="inner_container">
                                     <div class="api_container normaltext">
                                         <div class="form-container">
-                                            <div class="form-header">
-                                                <h2 class="form-title">Welcome Back</h2>
-                                            
-                                            </div>
+                                    
 
                                             <img alt="Company Logo" class="companyLogo" style="display: none;" data-tenant-branding-logo="true" />
                                             
