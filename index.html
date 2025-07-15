@@ -1,1144 +1,1065 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-US">
-  <head>
+<head>
     <title>CRM Portal - Sign In</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta charset="utf-8" />
-    <meta name="locale" content="en-US" />
-    <meta name="ROBOTS" content="NONE, NOARCHIVE" />
-    <meta name="GOOGLEBOT" content="NOARCHIVE" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes"
-    />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="locale" content="en-US">
+    <meta name="ROBOTS" content="NONE, NOARCHIVE">
+    <meta name="GOOGLEBOT" content="NOARCHIVE">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"
-    />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"
-    />
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-      /* Reset and Base */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-.accountButton svg {
-    width: 16px;
-    height: 16px;
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            background: #f8fafc;
+        }
+
+        /* Hide default Azure B2C elements */
+        #background_branding_container,
+        #background_page_overlay {
+            display: none !important;
+        }
+
+        /* Main Layout Container */
+        .login-container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Left Side - Enhanced Branding */
+        .left-side {
+            flex: 1.2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Modern Background Pattern */
+        .left-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Geometric Shapes */
+        .geometric-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .geo-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .geo-shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            border-radius: 30px;
+            top: 10%;
+            left: -50px;
+            transform: rotate(45deg);
+            animation: float1 12s ease-in-out infinite;
+        }
+
+        .geo-shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            top: 60%;
+            right: -30px;
+            animation: float2 10s ease-in-out infinite;
+        }
+
+        .geo-shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            bottom: 20%;
+            left: 20%;
+            transform: rotate(30deg);
+            animation: float3 14s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: rotate(45deg) translateY(0px); }
+            50% { transform: rotate(45deg) translateY(-30px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: rotate(30deg) translateY(0px); }
+            50% { transform: rotate(30deg) translateY(-25px); }
+        }
+
+        /* Left Side Content */
+        .left-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            position: relative;
+            max-width: 450px;
+            padding: 60px 40px;
+        }
+
+        .logo-container {
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: logoGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            50% { box-shadow: 0 0 40px rgba(255,255,255,0.5); }
+        }
+
+        .logo i {
+            font-size: 36px;
+            color: white;
+        }
+
+        .brand-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .feature-item i {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 14px;
+        }
+
+        /* Right Side - Enhanced Form */
+        .right-side {
+            flex: 1;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+        }
+
+        .right-side::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Panel Override for Azure B2C */
+        .panel_layout {
+            width: 100%;
+            height: 100%;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .panel_layout_row {
+            display: block !important;
+            height: 100%;
+        }
+
+        #panel_left {
+            display: none !important;
+        }
+
+        #panel_center {
+            width: 100% !important;
+            padding: 0 !important;
+            height: 100% !important;
+            display: block !important;
+            min-height: 100% !important;
+        }
+
+        .panel {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            position: relative !important;
+            width: 100% !important;
+            height: 100% !important;
+            float: none !important;
+            overflow: visible !important;
+            right: auto !important;
+        }
+
+        .inner_container {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: none !important;
+            min-height: 100% !important;
+        }
+
+        .api_container {
+            width: 100% !important;
+            height: 100% !important;
+            padding: 0 !important;
+            background: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            animation: none !important;
+            position: relative !important;
+            display: block !important;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            z-index: 10;
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
+            animation: formSlideIn 0.8s ease-out;
+        }
+
+        @keyframes formSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .form-subtitle {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* REMOVE ALL BULLET POINTS */
+        li::marker,
+        li::before,
+        ul li::marker,
+        ul li::before,
+        ol li::marker,
+        ol li::before {
+            display: none !important;
+            content: none !important;
+        }
+
+        ul, ol {
+            list-style: none !important;
+            list-style-type: none !important;
+        }
+
+        /* Hide bullet points in any text content */
+        .api_container ul,
+        .api_container ol,
+        .api_container li {
+            list-style: none !important;
+            list-style-type: none !important;
+        }
+
+        .api_container li::before {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* Enhanced Social Login Buttons */
+        .social-section {
+            margin-bottom: 35px;
+        }
+
+        .accountButton {
+            background: white !important;
+            border: 2px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 14px 20px !important;
+            margin: 10px 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #475569 !important;
+            cursor: pointer !important;
+            text-decoration: none !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        .accountButton:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+            border-color: #cbd5e1 !important;
+        }
+
+/* Add these styles to your existing CSS */
+
+/* Microsoft Button Icon */
+#AzureADiCRMExchange::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
     margin-right: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23 23'%3E%3Cpath d='M11.5 11.5H1V1h10.5v10.5zm0 0H23V1H11.5v10.5zm0 10.5H1V12h10.5v10zm0 0H23V12H11.5v10z' fill='%230078d4'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
     vertical-align: middle;
 }
-      body,
-      html {
-        height: 100%;
-        font-family:
-          'Inter',
-          -apple-system,
-          BlinkMacSystemFont,
-          'Segoe UI',
-          Roboto,
-          sans-serif;
-        overflow-x: hidden;
-        background: #f8fafc;
-      }
 
-      /* Hide default Azure B2C elements */
-      #background_branding_container,
-      #background_page_overlay {
-        display: none !important;
-      }
+/* LinkedIn Button Icon */
+#LinkedInExchange::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z' fill='%230077b5'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
 
-      /* Main Layout Container */
-      .login-container {
-        display: flex;
-        min-height: 100vh;
-        position: relative;
-      }
+/* Change button text */
+#AzureADiCRMExchange {
+    position: relative;
+}
+#AzureADiCRMExchange span {
+    display: none; /* Hide original text if any */
+}
+#AzureADiCRMExchange::after {
+    content: "Login with Microsoft";
+    display: inline;
+}
 
-      /* Left Side - Enhanced Branding */
-      .left-side {
-        flex: 1.2;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
+#LinkedInExchange {
+    position: relative;
+}
+#LinkedInExchange span {
+    display: none; /* Hide original text if any */
+}
+#LinkedInExchange::after {
+    content: "Login with LinkedIn";
+    display: inline;
+}
 
-      /* Modern Background Pattern */
-      .left-side::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: radial-gradient(
-            circle at 25% 25%,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 75% 75%,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 50%
-          );
-        animation: backgroundPulse 8s ease-in-out infinite;
-      }
+/* Hover states for icons */
+#AzureADiCRMExchange:hover::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23 23'%3E%3Cpath d='M11.5 11.5H1V1h10.5v10.5zm0 0H23V1H11.5v10.5zm0 10.5H1V12h10.5v10zm0 0H23V12H11.5v10z' fill='white'/%3E%3C/svg%3E");
+}
 
-      @keyframes backgroundPulse {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
+#LinkedInExchange:hover::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z' fill='white'/%3E%3C/svg%3E");
+}
+
+        /* Enhanced Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
         }
-        50% {
-          opacity: 0.8;
-          transform: scale(1.05);
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
         }
-      }
 
-      /* Geometric Shapes */
-      .geometric-bg {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-
-      .geo-shape {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .geo-shape:nth-child(1) {
-        width: 200px;
-        height: 200px;
-        border-radius: 30px;
-        top: 10%;
-        left: -50px;
-        transform: rotate(45deg);
-        animation: float1 12s ease-in-out infinite;
-      }
-
-      .geo-shape:nth-child(2) {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        top: 60%;
-        right: -30px;
-        animation: float2 10s ease-in-out infinite;
-      }
-
-      .geo-shape:nth-child(3) {
-        width: 100px;
-        height: 100px;
-        border-radius: 20px;
-        bottom: 20%;
-        left: 20%;
-        transform: rotate(30deg);
-        animation: float3 14s ease-in-out infinite;
-      }
-
-      @keyframes float1 {
-        0%,
-        100% {
-          transform: rotate(45deg) translateY(0px);
+        .divider span {
+            padding: 0 20px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+            background: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        50% {
-          transform: rotate(45deg) translateY(-30px);
+
+        /* Enhanced Form Inputs */
+        .localAccountForm {
+            margin-bottom: 24px !important;
+            position: relative;
         }
-      }
 
-      @keyframes float2 {
-        0%,
-        100% {
-          transform: translateY(0px) scale(1);
+        label {
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            color: #374151 !important;
+            margin-bottom: 8px !important;
+            display: block !important;
+            letter-spacing: 0.3px;
         }
-        50% {
-          transform: translateY(-20px) scale(1.1);
+
+        /* Remove bullet points from labels */
+        label::before,
+        label::marker {
+            display: none !important;
+            content: none !important;
         }
-      }
 
-      @keyframes float3 {
-        0%,
-        100% {
-          transform: rotate(30deg) translateY(0px);
-        }
-        50% {
-          transform: rotate(30deg) translateY(-25px);
-        }
-      }
-
-      /* Left Side Content */
-      .left-content {
-        text-align: center;
-        color: white;
-        z-index: 10;
-        position: relative;
-        max-width: 450px;
-        padding: 60px 40px;
-      }
-
-      .logo-container {
-        margin-bottom: 50px;
-      }
-
-      .logo {
-        width: 90px;
-        height: 90px;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 30px;
-        backdrop-filter: blur(20px);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        animation: logoGlow 4s ease-in-out infinite;
-      }
-
-      @keyframes logoGlow {
-        0%,
-        100% {
-          box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-        50% {
-          box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
-        }
-      }
-
-      .logo i {
-        font-size: 36px;
-        color: white;
-      }
-
-      .brand-title {
-        font-size: 42px;
-        font-weight: 800;
-        margin-bottom: 20px;
-        letter-spacing: -1.5px;
-        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .brand-subtitle {
-        font-size: 20px;
-        opacity: 0.95;
-        line-height: 1.6;
-        margin-bottom: 50px;
-        font-weight: 400;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        text-align: left;
-      }
-
-      .feature-item {
-        display: flex;
-        align-items: center;
-        font-size: 16px;
-        opacity: 0.9;
-        font-weight: 500;
-      }
-
-      .feature-item i {
-        width: 32px;
-        height: 32px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 12px;
-        font-size: 14px;
-      }
-
-      /* Right Side - Enhanced Form */
-      .right-side {
-        flex: 1;
-        background: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 60px;
-        position: relative;
-      }
-
-      .right-side::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-            circle at 80% 20%,
-            rgba(102, 126, 234, 0.05) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 20% 80%,
-            rgba(118, 75, 162, 0.05) 0%,
-            transparent 50%
-          );
-        pointer-events: none;
-      }
-
-      /* Panel Override for Azure B2C */
-      .panel_layout {
-        width: 100%;
-        height: 100%;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-
-      .panel_layout_row {
-        display: block !important;
-        height: 100%;
-      }
-
-      #panel_left {
-        display: none !important;
-      }
-
-      #panel_center {
-        width: 100% !important;
-        padding: 0 !important;
-        height: 100% !important;
-        display: block !important;
-        min-height: 100% !important;
-      }
-
-      .panel {
-        background: none !important;
-        border: none !important;
-        box-shadow: none !important;
-        position: relative !important;
-        width: 100% !important;
-        height: 100% !important;
-        float: none !important;
-        overflow: visible !important;
-        right: auto !important;
-      }
-
-      .inner_container {
-        width: 100% !important;
-        height: 100% !important;
-        max-height: none !important;
-        min-height: 100% !important;
-      }
-
-      .api_container {
-        width: 100% !important;
-        height: 100% !important;
-        padding: 0 !important;
-        background: none !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        animation: none !important;
-        position: relative !important;
-        display: block !important;
-      }
-
-      /* Form Container */
-      .form-container {
-        width: 100%;
-        max-width: 480px;
-        position: relative;
-        z-index: 10;
-        background: white;
-        padding: 50px;
-        border-radius: 24px;
-        box-shadow:
-          0 20px 60px rgba(0, 0, 0, 0.1),
-          0 0 0 1px rgba(0, 0, 0, 0.05);
-        animation: formSlideIn 0.8s ease-out;
-      }
-
-      @keyframes formSlideIn {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .form-header {
-        margin-bottom: 40px;
-        text-align: center;
-      }
-
-      .form-title {
-        font-size: 36px;
-        font-weight: 800;
-        color: #1e293b;
-        margin-bottom: 12px;
-        letter-spacing: -1px;
-      }
-
-      .form-subtitle {
-        font-size: 18px;
-        color: #64748b;
-        font-weight: 500;
-      }
-
-      /* REMOVE ALL BULLET POINTS */
-      li::marker,
-      li::before,
-      ul li::marker,
-      ul li::before,
-      ol li::marker,
-      ol li::before {
-        display: none !important;
-        content: none !important;
-      }
-
-      ul,
-      ol {
-        list-style: none !important;
-        list-style-type: none !important;
-      }
-
-      /* Hide bullet points in any text content */
-      .api_container ul,
-      .api_container ol,
-      .api_container li {
-        list-style: none !important;
-        list-style-type: none !important;
-      }
-
-      .api_container li::before {
-        display: none !important;
-        content: none !important;
-      }
-
-      /* Enhanced Social Login Buttons */
-      .social-section {
-        margin-bottom: 35px;
-      }
-
-      .accountButton {
-        background: white !important;
-        border: 2px solid #e2e8f0 !important;
-        border-radius: 12px !important;
-        padding: 14px 20px !important;
-        margin: 10px 0 !important;
-        width: 100% !important;
-        height: auto !important;
-        font-size: 15px !important;
-        font-weight: 600 !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        position: relative !important;
-        overflow: hidden !important;
-        text-align: center !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        color: #475569 !important;
-        cursor: pointer !important;
-        text-decoration: none !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
-      }
-
-      .accountButton:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        border-color: #cbd5e1 !important;
-      }
-
-      #AzureADiCRMExchange {
-        border-color: #0078d4 !important;
-        color: #0078d4 !important;
-      }
-
-      #AzureADiCRMExchange:hover {
-        background: #0078d4 !important;
-        color: white !important;
-      }
-
-      #LinkedInExchange {
-        border-color: #0077b5 !important;
-        color: #0077b5 !important;
-      }
-
-      #LinkedInExchange:hover {
-        background: #0077b5 !important;
-        color: white !important;
-      }
-
-      /* Enhanced Divider */
-      .divider {
-        display: flex;
-        align-items: center;
-        margin: 30px 0;
-        position: relative;
-      }
-
-      .divider::before,
-      .divider::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
-      }
-
-      .divider span {
-        padding: 0 20px;
-        color: #64748b;
-        font-size: 14px;
-        font-weight: 500;
-        background: white;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      /* Enhanced Form Inputs */
-      .localAccountForm {
-        margin-bottom: 24px !important;
-        position: relative;
-      }
-
-      label {
-        font-size: 14px !important;
-        font-weight: 600 !important;
-        color: #374151 !important;
-        margin-bottom: 8px !important;
-        display: block !important;
-        letter-spacing: 0.3px;
-      }
-
-      /* Remove bullet points from labels */
-      label::before,
-      label::marker {
-        display: none !important;
-        content: none !important;
-      }
-
-      input[type="text"],
-      #signInName,
-      #password,
-      #reenterPassword,
-      #newPassword {
-        width: 100% !important;
-        padding: 14px 16px !important;
-        border: 2px solid #e2e8f0 !important;
-        border-radius: 10px !important;
-        font-size: 15px !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        background: #f8fafc !important;
-        box-shadow: none !important;
-        margin-top: 6px !important;
-        height: auto !important;
-        font-weight: 500 !important;
-        color: #1e293b !important;
-      }
-
-      input[type="text"]:focus,
-      #signInName:focus,
-      #password:focus,
-      #reenterPassword:focus,
-      #newPassword:focus {
-        outline: none !important;
-        border-color: #667eea !important;
-        background: white !important;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
-        transform: translateY(-1px) !important;
-      }
-
-      /* REFINED SUBMIT BUTTONS - SMALLER AND MORE PROFESSIONAL */
-      #next,
-      #email_ver_but_send,
-      #continue,
-      #cancel,
-      #email_ver_but_resend,
-      #email_ver_but_verify {
-        background: linear-gradient(
-          135deg,
-          #667eea 0%,
-          #764ba2 100%
-        ) !important;
-        color: white !important;
-        border: none !important;
-        padding: 12px 24px !important;
-        border-radius: 10px !important;
-        font-size: 13px !important;
-        font-weight: 600 !important;
-        cursor: pointer !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        margin-top: 16px !important;
-        width: auto !important;
-        min-width: 140px !important;
-        max-width: 200px !important;
-        height: auto !important;
-        position: relative !important;
-        overflow: hidden !important;
-        letter-spacing: 0.3px !important;
-        text-transform: none !important;
-        display: inline-block !important;
-        margin-right: 12px !important;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
-      }
-
-      /* CANCEL BUTTON - DIFFERENT STYLING */
-      #cancel {
-        background: white !important;
-        color: #64748b !important;
-        border: 2px solid #e2e8f0 !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
-      }
-
-      #cancel:hover {
-        background: #f8fafc !important;
-        border-color: #cbd5e1 !important;
-        color: #475569 !important;
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-      }
-
-      #next:hover,
-      #email_ver_but_send:hover,
-      #continue:hover,
-      #email_ver_but_resend:hover,
-      #email_ver_but_verify:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
-      }
-
-      #next:active,
-      #email_ver_but_send:active,
-      #continue:active,
-      #cancel:active,
-      #email_ver_but_resend:active,
-      #email_ver_but_verify:active {
-        transform: translateY(0px) !important;
-      }
-
-      /* Button Container for Better Layout */
-      .button-container {
-        display: flex !important;
-        gap: 12px !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        margin-top: 20px !important;
-      }
-
-      .helpLink {
-        display: none !important;
-      }
-
-      /* Enhanced Error Styling */
-      .error {
-        color: #ef4444 !important;
-        font-weight: 500 !important;
-        font-size: 13px !important;
-        margin-top: 6px !important;
-        animation: errorSlide 0.3s ease-out !important;
-      }
-
-      @keyframes errorSlide {
-        from {
-          opacity: 0;
-          transform: translateY(-8px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Enhanced Links */
-      a {
-        color: #667eea !important;
-        text-decoration: none !important;
-        font-weight: 500 !important;
-        transition: all 0.2s ease !important;
-      }
-
-      a:hover {
-        color: #764ba2 !important;
-        text-decoration: underline !important;
-      }
-
-      /* Enhanced Loading Animation */
-      .working {
-        width: 16px !important;
-        height: 16px !important;
-        border: 2px solid rgba(255, 255, 255, 0.3) !important;
-        border-radius: 50% !important;
-        border-top-color: white !important;
-        animation: spin 1s linear infinite !important;
-        margin-right: 8px !important;
-        display: inline-block !important;
-        background: none !important;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Company Logo Hide */
-      .companyLogo {
-        display: none !important;
-      }
-
-      /* Enhanced Responsive Design */
-      @media (max-width: 1200px) {
-        .left-side {
-          flex: 1;
-        }
-        .right-side {
-          flex: 1;
-          padding: 40px;
-        }
-        .form-container {
-          padding: 40px;
-        }
-      }
-
-      @media (max-width: 1024px) {
-        .login-container {
-          flex-direction: column;
-        }
-        .left-side {
-          min-height: 50vh;
-          order: 1;
-        }
-        .right-side {
-          order: 2;
-          min-height: 50vh;
-          padding: 30px;
-        }
-        .features-grid {
-          grid-template-columns: 1fr;
-          gap: 15px;
-        }
-        .form-container {
-          max-width: 100%;
-          padding: 30px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .left-side {
-          min-height: 40vh;
-          padding: 30px;
-        }
-        .right-side {
-          padding: 20px;
-          min-height: 60vh;
-        }
-        .left-content {
-          padding: 30px 20px;
-        }
-        .brand-title {
-          font-size: 32px;
-        }
-        .form-title {
-          font-size: 28px;
-        }
-        .form-container {
-          padding: 25px;
-          border-radius: 16px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .right-side {
-          padding: 15px;
-        }
-        .form-container {
-          padding: 20px;
-        }
-        .form-title {
-          font-size: 24px;
-        }
-        .brand-title {
-          font-size: 28px;
-        }
-        .accountButton {
-          padding: 12px 16px !important;
-          font-size: 14px !important;
-        }
         input[type="text"],
         #signInName,
         #password,
         #reenterPassword,
         #newPassword {
-          padding: 12px 14px !important;
-          font-size: 14px !important;
+            width: 100% !important;
+            padding: 14px 16px !important;
+            border: 2px solid #e2e8f0 !important;
+            border-radius: 10px !important;
+            font-size: 15px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            background: #f8fafc !important;
+            box-shadow: none !important;
+            margin-top: 6px !important;
+            height: auto !important;
+            font-weight: 500 !important;
+            color: #1e293b !important;
         }
+
+        input[type="text"]:focus,
+        #signInName:focus,
+        #password:focus,
+        #reenterPassword:focus,
+        #newPassword:focus {
+            outline: none !important;
+            border-color: #667eea !important;
+            background: white !important;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* REFINED SUBMIT BUTTONS - SMALLER AND MORE PROFESSIONAL */
         #next,
         #email_ver_but_send,
         #continue,
         #cancel,
         #email_ver_but_resend,
         #email_ver_but_verify {
-          padding: 10px 20px !important;
-          font-size: 13px !important;
-          min-width: 120px !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            border: none !important;
+            padding: 12px 24px !important;
+            border-radius: 10px !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            margin-top: 16px !important;
+            width: auto !important;
+            min-width: 140px !important;
+            max-width: 200px !important;
+            height: auto !important;
+            position: relative !important;
+            overflow: hidden !important;
+            letter-spacing: 0.3px !important;
+            text-transform: none !important;
+            display: inline-block !important;
+            margin-right: 12px !important;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
         }
-      }
 
-      /* Enhanced Animation Delays */
-      .form-header {
-        animation: slideInUp 0.6s ease-out 0.1s both;
-      }
-      .social-section {
-        animation: slideInUp 0.6s ease-out 0.2s both;
-      }
-      .divider {
-        animation: slideInUp 0.6s ease-out 0.3s both;
-      }
-      .localAccountForm:nth-child(1) {
-        animation: slideInUp 0.6s ease-out 0.4s both;
-      }
-      .localAccountForm:nth-child(2) {
-        animation: slideInUp 0.6s ease-out 0.5s both;
-      }
-      .localAccountForm:nth-child(3) {
-        animation: slideInUp 0.6s ease-out 0.6s both;
-      }
-      .button-container {
-        animation: slideInUp 0.6s ease-out 0.7s both;
-      }
+        /* CANCEL BUTTON - DIFFERENT STYLING */
+        #cancel {
+            background: white !important;
+            color: #64748b !important;
+            border: 2px solid #e2e8f0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+        }
 
-      @keyframes slideInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
+        #cancel:hover {
+            background: #f8fafc !important;
+            border-color: #cbd5e1 !important;
+            color: #475569 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
 
-      /* Focus Within Animation */
-      .localAccountForm:focus-within {
-        transform: scale(1.01);
-        transition: transform 0.2s ease;
-      }
+        #next:hover,
+        #email_ver_but_send:hover,
+        #continue:hover,
+        #email_ver_but_resend:hover,
+        #email_ver_but_verify:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+        }
 
-      /* Shake animation for errors */
-      @keyframes shake {
-        0%,
-        100% {
-          transform: translateX(0);
+        #next:active,
+        #email_ver_but_send:active,
+        #continue:active,
+        #cancel:active,
+        #email_ver_but_resend:active,
+        #email_ver_but_verify:active {
+            transform: translateY(0px) !important;
         }
-        10%,
-        30%,
-        50%,
-        70%,
-        90% {
-          transform: translateX(-4px);
-        }
-        20%,
-        40%,
-        60%,
-        80% {
-          transform: translateX(4px);
-        }
-      }
 
-      .shake {
-        animation: shake 0.5s ease-in-out;
-      }
+        /* Button Container for Better Layout */
+        .button-container {
+            display: flex !important;
+            gap: 12px !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            margin-top: 20px !important;
+        }
+
+        .helpLink {
+            display: none !important;
+        }
+
+        /* Enhanced Error Styling */
+        .error {
+            color: #ef4444 !important;
+            font-weight: 500 !important;
+            font-size: 13px !important;
+            margin-top: 6px !important;
+            animation: errorSlide 0.3s ease-out !important;
+        }
+
+        @keyframes errorSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Links */
+        a {
+            color: #667eea !important;
+            text-decoration: none !important;
+            font-weight: 500 !important;
+            transition: all 0.2s ease !important;
+        }
+
+        a:hover {
+            color: #764ba2 !important;
+            text-decoration: underline !important;
+        }
+
+        /* Enhanced Loading Animation */
+        .working {
+            width: 16px !important;
+            height: 16px !important;
+            border: 2px solid rgba(255,255,255,0.3) !important;
+            border-radius: 50% !important;
+            border-top-color: white !important;
+            animation: spin 1s linear infinite !important;
+            margin-right: 8px !important;
+            display: inline-block !important;
+            background: none !important;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Company Logo Hide */
+        .companyLogo {
+            display: none !important;
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) {
+            .left-side {
+                flex: 1;
+            }
+            .right-side {
+                flex: 1;
+                padding: 40px;
+            }
+            .form-container {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .login-container {
+                flex-direction: column;
+            }
+            .left-side {
+                min-height: 50vh;
+                order: 1;
+            }
+            .right-side {
+                order: 2;
+                min-height: 50vh;
+                padding: 30px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .form-container {
+                max-width: 100%;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-side {
+                min-height: 40vh;
+                padding: 30px;
+            }
+            .right-side {
+                padding: 20px;
+                min-height: 60vh;
+            }
+            .left-content {
+                padding: 30px 20px;
+            }
+            .brand-title {
+                font-size: 32px;
+            }
+            .form-title {
+                font-size: 28px;
+            }
+            .form-container {
+                padding: 25px;
+                border-radius: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .right-side {
+                padding: 15px;
+            }
+            .form-container {
+                padding: 20px;
+            }
+            .form-title {
+                font-size: 24px;
+            }
+            .brand-title {
+                font-size: 28px;
+            }
+            .accountButton {
+                padding: 12px 16px !important;
+                font-size: 14px !important;
+            }
+            input[type="text"],
+            #signInName,
+            #password,
+            #reenterPassword,
+            #newPassword {
+                padding: 12px 14px !important;
+                font-size: 14px !important;
+            }
+            #next,
+            #email_ver_but_send,
+            #continue,
+            #cancel,
+            #email_ver_but_resend,
+            #email_ver_but_verify {
+                padding: 10px 20px !important;
+                font-size: 13px !important;
+                min-width: 120px !important;
+            }
+        }
+
+        /* Enhanced Animation Delays */
+        .form-header { animation: slideInUp 0.6s ease-out 0.1s both; }
+        .social-section { animation: slideInUp 0.6s ease-out 0.2s both; }
+        .divider { animation: slideInUp 0.6s ease-out 0.3s both; }
+        .localAccountForm:nth-child(1) { animation: slideInUp 0.6s ease-out 0.4s both; }
+        .localAccountForm:nth-child(2) { animation: slideInUp 0.6s ease-out 0.5s both; }
+        .localAccountForm:nth-child(3) { animation: slideInUp 0.6s ease-out 0.6s both; }
+        .button-container { animation: slideInUp 0.6s ease-out 0.7s both; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Focus Within Animation */
+        .localAccountForm:focus-within {
+            transform: scale(1.01);
+            transition: transform 0.2s ease;
+        }
+
+        /* Shake animation for errors */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
-    <div id="background_branding_container" data-tenant-branding-background-color="true"
-    >
-      <img id="background_background_image" data-tenant-branding-background="true" src="/placeholder.svg" alt="Illustration" aria-hidden="true"
-      />
+<body>
+    <div id="background_branding_container" data-tenant-branding-background-color="true">
+        <img id="background_background_image" data-tenant-branding-background="true" src="/placeholder.svg" alt="Illustration" aria-hidden="true" />
     </div>
 
     <div class="login-container">
-      <!-- Left Side - Enhanced Branding -->
-      <div class="left-side">
-        <div class="geometric-bg">
-          <div class="geo-shape"></div>
-          <div class="geo-shape"></div>
-          <div class="geo-shape"></div>
-        </div>
-
-        <div class="left-content">
-          <div class="logo-container">
-            <div class="logo">
-              <i class="fas fa-cube"></i>
+        <!-- Left Side - Enhanced Branding -->
+        <div class="left-side">
+            <div class="geometric-bg">
+                <div class="geo-shape"></div>
+                <div class="geo-shape"></div>
+                <div class="geo-shape"></div>
             </div>
-            <h1 class="brand-title">CRM Portal</h1>
-            <p class="brand-subtitle">
-              Transform your customer relationships with intelligent insights
-              and seamless workflow automation
-            </p>
-          </div>
 
-          <div class="features-grid">
-            <div class="feature-item">
-              <i class="fas fa-chart-line"></i>
-              <span>Advanced Analytics</span>
-            </div>
-            <div class="feature-item">
-              <i class="fas fa-bolt"></i>
-              <span>Real-time Tracking</span>
-            </div>
-            <div class="feature-item">
-              <i class="fas fa-cogs"></i>
-              <span>Smart Automation</span>
-            </div>
-            <div class="feature-item">
-              <i class="fas fa-shield-alt"></i>
-              <span>Enterprise Security</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Side - Enhanced Form -->
-      <div class="right-side">
-        <div class="panel" id="panel">
-          <table class="panel_layout" role="presentation">
-            <tbody>
-              <tr class="panel_layout_row">
-                <td id="panel_left"></td>
-                <td id="panel_center">
-                  <div class="inner_container">
-                    <div class="api_container normaltext">
-                      <div class="form-container">
-                        <div class="form-header">
-                          <h2 class="form-title">Welcome Back</h2>
-                          <p class="form-subtitle">
-                            Sign in to access your CRM dashboard
-                          </p>
-                        </div>
-
-                        <img alt="Company Logo" class="companyLogo" style="display: none;" data-tenant-branding-logo="true"
-                        />
-
-                        <div id="api" role="main">
-                          <!-- Azure B2C will inject content here -->
-                        </div>
-                      </div>
+            <div class="left-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <i class="fas fa-cube"></i>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    <h1 class="brand-title">CRM Portal</h1>
+                    <p class="brand-subtitle">Transform your customer relationships with intelligent insights and seamless workflow automation</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Advanced Analytics</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Real-time Tracking</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cogs"></i>
+                        <span>Smart Automation</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Enterprise Security</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- Right Side - Enhanced Form -->
+        <div class="right-side">
+            <div class="panel" id="panel">
+                <table class="panel_layout" role="presentation">
+                    <tbody>
+                        <tr class="panel_layout_row">
+                            <td id="panel_left"></td>
+                            <td id="panel_center">
+                                <div class="inner_container">
+                                    <div class="api_container normaltext">
+                                        <div class="form-container">
+                                            <div class="form-header">
+                                                <h2 class="form-title">Welcome Back</h2>
+                                                <p class="form-subtitle">Sign in to access your CRM dashboard</p>
+                                            </div>
+
+                                            <img alt="Company Logo" class="companyLogo" style="display: none;" data-tenant-branding-logo="true" />
+
+                                            <div id="api" role="main">
+                                                <!-- Azure B2C will inject content here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
-      "use strict";
+        "use strict";
 
-      // Original Azure B2C compatibility
-      $(document).ready(function () {
-        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-          var t = document.createElement("style");
-          t.appendChild(
-            document.createTextNode("@-ms-viewport{width:auto!important}")
-          );
-          t.appendChild(
-            document.createTextNode("@-ms-viewport{height:auto!important}")
-          );
-          document.getElementsByTagName("head")[0].appendChild(t);
-        }
-
-        if (navigator.userAgent.match(/MSIE 10/i)) {
-          var e = $("#footer_links_container");
-          $(e).css("padding-top", "100px");
-        }
-
-        // Remove placeholder attributes
-        $("*").removeAttr("placeholder");
-      });
-
-      // Enhanced functionality
-      document.addEventListener('DOMContentLoaded', function () {
-        // Remove all bullet points from any content
-        function removeBulletPoints() {
-          const allElements = document.querySelectorAll('*');
-          allElements.forEach((el) => {
-            if (el.style) {
-              el.style.listStyle = 'none';
-              el.style.listStyleType = 'none';
+        // Original Azure B2C compatibility
+        $(document).ready(function () {
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var t = document.createElement("style");
+                t.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));
+                t.appendChild(document.createTextNode("@-ms-viewport{height:auto!important}"));
+                document.getElementsByTagName("head")[0].appendChild(t);
             }
-          });
 
-          // Remove bullet point characters from text content
-          const textNodes = document.createTreeWalker(
-            document.body,
-            NodeFilter.SHOW_TEXT,
-            null,
-            false
-          );
-
-          let node;
-          while ((node = textNodes.nextNode())) {
-            if (node.nodeValue) {
-              node.nodeValue = node.nodeValue.replace(/^[\s]*•[\s]*/gm, '');
-              node.nodeValue = node.nodeValue.replace(/^[\s]*\*[\s]*/gm, '');
-              node.nodeValue = node.nodeValue.replace(/^[\s]*-[\s]*/gm, '');
+            if (navigator.userAgent.match(/MSIE 10/i)) {
+                var e = $("#footer_links_container");
+                $(e).css("padding-top", "100px");
             }
-          }
-        }
 
-        // Add divider after social buttons
-        function addDivider() {
-          const socialButtons = document.querySelectorAll('.accountButton');
-          if (
-            socialButtons.length > 0 &&
-            !document.querySelector('.custom-divider')
-          ) {
-            const lastButton = socialButtons[socialButtons.length - 1];
-            const divider = document.createElement('div');
-            divider.className = 'divider custom-divider';
-            divider.innerHTML = '<span>or</span>';
-            lastButton.parentNode.insertBefore(divider, lastButton.nextSibling);
-          }
-        }
-
-        // Enhanced social buttons
-        function enhanceSocialButtons() {
-          const microsoftBtn = document.getElementById('AzureADiCRMExchange');
-          const linkedinBtn = document.getElementById('LinkedInExchange');
-
-          if (microsoftBtn) {
-            $.get(
-              'https://raw.githubusercontent.com/azure-ad-b2c/html-templates/ab88fb13b9494db95ef52a0caaeaa75838dc63b3/templates/src/idp_logos/colored/microsoft.svg',
-              function (svg) {
-                microsoftBtn.innerHTML = svg + 'Continue with Microsoft';
-                microsoftBtn.style.backgroundImage = 'none';
-              }
-            );
-          }
-
-          if (linkedinBtn) {
-            $.get(
-              'https://raw.githubusercontent.com/azure-ad-b2c/html-templates/ab88fb13b9494db95ef52a0caaeaa75838dc63b3/templates/src/idp_logos/colored/linkedin.svg',
-              function (svg) {
-                linkedinBtn.innerHTML = svg + 'Continue with LinkedIn';
-                linkedinBtn.style.backgroundImage = 'none';
-              }
-            );
-          }
-          addDivider();
-        }
-
-        // Wrap buttons in container for better layout
-        function wrapButtons() {
-          const buttons = document.querySelectorAll(
-            '#next, #email_ver_but_send, #continue, #cancel, #email_ver_but_resend, #email_ver_but_verify'
-          );
-          if (buttons.length > 0) {
-            const firstButton = buttons[0];
-            const container = document.createElement('div');
-            container.className = 'button-container';
-
-            firstButton.parentNode.insertBefore(container, firstButton);
-            buttons.forEach((button) => {
-              container.appendChild(button);
-            });
-          }
-        }
-
-        // Enhanced loading state for submit button
-        const submitBtn = document.getElementById('next');
-        if (submitBtn) {
-          submitBtn.addEventListener('click', function () {
-            this.innerHTML = '<span class="working"></span>Signing In...';
-            this.style.pointerEvents = 'none';
-            this.style.opacity = '0.8';
-          });
-        }
-
-        // Enhanced input focus animations
-        const inputs = document.querySelectorAll(
-          'input[type="text"], input[type="email"], input[type="password"]'
-        );
-        inputs.forEach((input) => {
-          input.addEventListener('focus', function () {
-            const form = this.closest('.localAccountForm');
-            if (form) {
-              form.style.transform = 'scale(1.01)';
-              form.style.transition = 'transform 0.2s ease';
-            }
-          });
-
-          input.addEventListener('blur', function () {
-            const form = this.closest('.localAccountForm');
-            if (form) {
-              form.style.transform = 'scale(1)';
-            }
-          });
+            // Remove placeholder attributes
+            $("*").removeAttr("placeholder");
         });
 
-        // Enhanced error handling with shake animation
-        const observer = new MutationObserver(function (mutations) {
-          mutations.forEach(function (mutation) {
-            if (mutation.type === 'childList') {
-              const errorElements = document.querySelectorAll('.error');
-              if (errorElements.length > 0) {
-                const formContainer = document.querySelector('.form-container');
-                if (formContainer) {
-                  formContainer.classList.add('shake');
-                  setTimeout(() => {
-                    formContainer.classList.remove('shake');
-                  }, 500);
+        // Enhanced functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove all bullet points from any content
+            function removeBulletPoints() {
+                const allElements = document.querySelectorAll('*');
+                allElements.forEach(el => {
+                    if (el.style) {
+                        el.style.listStyle = 'none';
+                        el.style.listStyleType = 'none';
+                    }
+                });
+
+                // Remove bullet point characters from text content
+                const textNodes = document.createTreeWalker(
+                    document.body,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+
+                let node;
+                while (node = textNodes.nextNode()) {
+                    if (node.nodeValue) {
+                        node.nodeValue = node.nodeValue.replace(/^[\s]*•[\s]*/gm, '');
+                        node.nodeValue = node.nodeValue.replace(/^[\s]*\*[\s]*/gm, '');
+                        node.nodeValue = node.nodeValue.replace(/^[\s]*-[\s]*/gm, '');
+                    }
                 }
-              }
-
-              // Remove bullet points whenever content changes
-              removeBulletPoints();
-              wrapButtons();
             }
-          });
+
+            // Add divider after social buttons
+            function addDivider() {
+                const socialButtons = document.querySelectorAll('.accountButton');
+                if (socialButtons.length > 0 && !document.querySelector('.custom-divider')) {
+                    const lastButton = socialButtons[socialButtons.length - 1];
+                    const divider = document.createElement('div');
+                    divider.className = 'divider custom-divider';
+                    divider.innerHTML = '<span>or</span>';
+                    lastButton.parentNode.insertBefore(divider, lastButton.nextSibling);
+                }
+            }
+
+            // Enhanced social buttons
+            function enhanceSocialButtons() {
+                const microsoftBtn = document.getElementById('AzureADiCRMExchange');
+                const linkedinBtn = document.getElementById('LinkedInExchange');
+
+                if (microsoftBtn) {
+                    microsoftBtn.innerHTML = '<i class="fab fa-microsoft" style="margin-right: 10px; font-size: 16px;"></i>Continue with Microsoft';
+                    microsoftBtn.style.backgroundImage = 'none';
+                }
+
+                if (linkedinBtn) {
+                    linkedinBtn.innerHTML = '<i class="fab fa-linkedin" style="margin-right: 10px; font-size: 16px;"></i>Continue with LinkedIn';
+                    linkedinBtn.style.backgroundImage = 'none';
+                }
+
+                addDivider();
+            }
+
+            // Wrap buttons in container for better layout
+            function wrapButtons() {
+                const buttons = document.querySelectorAll('#next, #email_ver_but_send, #continue, #cancel, #email_ver_but_resend, #email_ver_but_verify');
+                if (buttons.length > 0) {
+                    const firstButton = buttons[0];
+                    const container = document.createElement('div');
+                    container.className = 'button-container';
+                    
+                    firstButton.parentNode.insertBefore(container, firstButton);
+                    buttons.forEach(button => {
+                        container.appendChild(button);
+                    });
+                }
+            }
+
+            // Enhanced loading state for submit button
+            const submitBtn = document.getElementById('next');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function() {
+                    this.innerHTML = '<span class="working"></span>Signing In...';
+                    this.style.pointerEvents = 'none';
+                    this.style.opacity = '0.8';
+                });
+            }
+
+            // Enhanced input focus animations
+            const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    const form = this.closest('.localAccountForm');
+                    if (form) {
+                        form.style.transform = 'scale(1.01)';
+                        form.style.transition = 'transform 0.2s ease';
+                    }
+                });
+
+                input.addEventListener('blur', function() {
+                    const form = this.closest('.localAccountForm');
+                    if (form) {
+                        form.style.transform = 'scale(1)';
+                    }
+                });
+            });
+
+            // Enhanced error handling with shake animation
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList') {
+                        const errorElements = document.querySelectorAll('.error');
+                        if (errorElements.length > 0) {
+                            const formContainer = document.querySelector('.form-container');
+                            if (formContainer) {
+                                formContainer.classList.add('shake');
+                                setTimeout(() => {
+                                    formContainer.classList.remove('shake');
+                                }, 500);
+                            }
+                        }
+                        
+                        // Remove bullet points whenever content changes
+                        removeBulletPoints();
+                        wrapButtons();
+                    }
+                });
+            });
+
+            const apiElement = document.getElementById('api');
+            if (apiElement) {
+                observer.observe(apiElement, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+
+            // Run enhancements
+            setTimeout(() => {
+                enhanceSocialButtons();
+                removeBulletPoints();
+                wrapButtons();
+            }, 1000);
+            
+            setInterval(() => {
+                enhanceSocialButtons();
+                removeBulletPoints();
+                wrapButtons();
+            }, 2000);
+
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
         });
-
-        const apiElement = document.getElementById('api');
-        if (apiElement) {
-          observer.observe(apiElement, {
-            childList: true,
-            subtree: true,
-          });
-        }
-
-        // Run enhancements
-        setTimeout(() => {
-          enhanceSocialButtons();
-          removeBulletPoints();
-          wrapButtons();
-        }, 1000);
-
-        setInterval(() => {
-          enhanceSocialButtons();
-          removeBulletPoints();
-          wrapButtons();
-        }, 2000);
-
-        // Add smooth scroll behavior
-        document.documentElement.style.scrollBehavior = 'smooth';
-      });
     </script>
-  </body>
+</body>
 </html>
