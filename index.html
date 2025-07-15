@@ -404,7 +404,9 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
             border-color: #cbd5e1 !important;
         }
-
+.force-block {
+    display: block !important;
+}
 /* Add these styles to your existing CSS */
 
 /* Microsoft Button Icon */
@@ -1043,6 +1045,36 @@
 
             // Add smooth scroll behavior
             document.documentElement.style.scrollBehavior = 'smooth';
+            // Function to conditionally set display to block
+function setDisplayToBlock() {
+    const buttonIds = [
+        'next',
+        'email_ver_but_send',
+        'continue',
+        'cancel',
+        'email_ver_but_resend',
+        'email_ver_but_verify'
+    ];
+
+    buttonIds.forEach(id => {
+        const button = document.getElementById(id);
+        if (button) {
+            const computedStyle = window.getComputedStyle(button);
+            if (computedStyle.display === 'inline') {
+                button.classList.add('force-block');
+            }
+        }
+    });
+}
+
+// Run the function after enhancements
+setTimeout(() => {
+    setDisplayToBlock();
+}, 1000);
+
+setInterval(() => {
+    setDisplayToBlock();
+}, 2000);
         });
     </script>
 </body>
