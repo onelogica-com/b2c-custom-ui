@@ -548,7 +548,6 @@
 
         /* REFINED SUBMIT BUTTONS - SMALLER AND MORE PROFESSIONAL */
         #next,
-        #email_ver_but_send,
         #continue,
         #cancel,
         #email_ver_but_resend,
@@ -837,6 +836,13 @@
             margin-right: 12px !important;
             box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
         }
+    span.required {
+    position: absolute;
+    right: 5%;
+    font-size: 1.4em;
+    color: red;
+    margin-top: .5em;
+}
     </style>
 </head>
 
@@ -916,184 +922,6 @@
         </div>
     </div>
 
-    <script>
-        "use strict";
-
-        // Original Azure B2C compatibility
-        $(document).ready(function () {
-            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-                var t = document.createElement("style");
-                t.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));
-                t.appendChild(document.createTextNode("@-ms-viewport{height:auto!important}"));
-                document.getElementsByTagName("head")[0].appendChild(t);
-            }
-
-            if (navigator.userAgent.match(/MSIE 10/i)) {
-                var e = $("#footer_links_container");
-                $(e).css("padding-top", "100px");
-            }
-
-            // Remove placeholder attributes
-            $("*").removeAttr("placeholder");
-        });
-
-        // Enhanced functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Remove all bullet points from any content
-            function removeBulletPoints() {
-                const allElements = document.querySelectorAll('*');
-                allElements.forEach(el => {
-                    if (el.style) {
-                        el.style.listStyle = 'none';
-                        el.style.listStyleType = 'none';
-                    }
-                });
-
-                // Remove bullet point characters from text content
-                const textNodes = document.createTreeWalker(
-                    document.body,
-                    NodeFilter.SHOW_TEXT,
-                    null,
-                    false
-                );
-
-                let node;
-                while (node = textNodes.nextNode()) {
-                    if (node.nodeValue) {
-                        node.nodeValue = node.nodeValue.replace(/^[\s]*•[\s]*/gm, '');
-                        node.nodeValue = node.nodeValue.replace(/^[\s]*\*[\s]*/gm, '');
-                        node.nodeValue = node.nodeValue.replace(/^[\s]*-[\s]*/gm, '');
-                    }
-                }
-            }
-
-            // Add divider after social buttons
-            function addDivider() {
-                const socialButtons = document.querySelectorAll('.accountButton');
-                if (socialButtons.length > 0 && !document.querySelector('.custom-divider')) {
-                    const lastButton = socialButtons[socialButtons.length - 1];
-                    const divider = document.createElement('div');
-                    divider.className = 'divider custom-divider';
-                    divider.innerHTML = '<span>or</span>';
-                    lastButton.parentNode.insertBefore(divider, lastButton.nextSibling);
-                }
-            }
-
-     
-            // Wrap buttons in container for better layout
-            function wrapButtons() {
-                const buttons = document.querySelectorAll('#next, #email_ver_but_send, #continue, #cancel, #email_ver_but_resend, #email_ver_but_verify');
-                if (buttons.length > 0) {
-                    const firstButton = buttons[0];
-                    const container = document.createElement('div');
-                    container.className = 'button-container';
-                    
-                    firstButton.parentNode.insertBefore(container, firstButton);
-                    buttons.forEach(button => {
-                        container.appendChild(button);
-                    });
-                }
-            }
-
-            // Enhanced loading state for submit button
-            const submitBtn = document.getElementById('next');
-            if (submitBtn) {
-                submitBtn.addEventListener('click', function() {
-                    this.innerHTML = '<span class="working"></span>Signing In...';
-                    this.style.pointerEvents = 'none';
-                    this.style.opacity = '0.8';
-                });
-            }
-
-            // Enhanced input focus animations
-            const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    const form = this.closest('.localAccountForm');
-                    if (form) {
-                        form.style.transform = 'scale(1.01)';
-                        form.style.transition = 'transform 0.2s ease';
-                    }
-                });
-
-                input.addEventListener('blur', function() {
-                    const form = this.closest('.localAccountForm');
-                    if (form) {
-                        form.style.transform = 'scale(1)';
-                    }
-                });
-            });
-
-            // Enhanced error handling with shake animation
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.type === 'childList') {
-                        const errorElements = document.querySelectorAll('.error');
-                        if (errorElements.length > 0) {
-                            const formContainer = document.querySelector('.form-container');
-                            if (formContainer) {
-                                formContainer.classList.add('shake');
-                                setTimeout(() => {
-                                    formContainer.classList.remove('shake');
-                                }, 500);
-                            }
-                        }
-                        
-                        // Remove bullet points whenever content changes
-                        removeBulletPoints();
-                        wrapButtons();
-                    }
-                });
-            });
-
-            const apiElement = document.getElementById('api');
-            if (apiElement) {
-                observer.observe(apiElement, {
-                    childList: true,
-                    subtree: true
-                });
-            }
-
-            // Run enhancements
-            setTimeout(() => {
-                removeBulletPoints();
-                wrapButtons();
-            }, 1000);
-            
-            setInterval(() => {
-                removeBulletPoints();
-                wrapButtons();
-            }, 2000);
-
-            // Add smooth scroll behavior
-            document.documentElement.style.scrollBehavior = 'smooth';
-            // Function to conditionally set display to block
-function setDisplayToBlock() {
-    const buttonIds = [
-        'email_ver_but_send',
-
-    ];
-
-    buttonIds.forEach(id => {
-        const button = document.getElementById(id);
-        if (button) {
-            const computedStyle = window.getComputedStyle(button);
-            if (computedStyle.display === 'inline') {
-                button.classList.add('force-block');
-            }
-        }
-    });
-}
-
-// Run the function after enhancements
-setTimeout(() => {
-    setDisplayToBlock();
-}, 1000);
-
-setInterval(() => {
-    setDisplayToBlock();
-}, 2000);
-        });
-    </script>
+  
 </body>
 </html>
