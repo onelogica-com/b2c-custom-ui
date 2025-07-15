@@ -768,7 +768,7 @@
                 font-size: 14px !important;
             }
             #next,
-            #email_ver_but_send,
+            
             #continue,
             #cancel,
             #email_ver_but_resend,
@@ -814,6 +814,28 @@
 
         .shake {
             animation: shake 0.5s ease-in-out;
+        }
+        #email_label{
+            display: none !important;
+        }
+        #email_ver_but_send{
+            width: 100% !important;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            border: none !important;
+            padding: 12px 24px !important;
+            border-radius: 10px !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;   
+            height: auto !important;
+            position: relative !important;
+            overflow: hidden !important;
+            letter-spacing: 0.3px !important;
+            text-transform: none !important;
+            margin-right: 12px !important;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
         }
     </style>
 </head>
@@ -1048,12 +1070,8 @@
             // Function to conditionally set display to block
 function setDisplayToBlock() {
     const buttonIds = [
-        'next',
         'email_ver_but_send',
-        'continue',
-        'cancel',
-        'email_ver_but_resend',
-        'email_ver_but_verify'
+
     ];
 
     buttonIds.forEach(id => {
