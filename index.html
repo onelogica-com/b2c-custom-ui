@@ -405,66 +405,25 @@
             border-color: #cbd5e1 !important;
         }
 
-/* Add these styles to your existing CSS */
+        #AzureADiCRMExchange {
+            border-color: #0078d4 !important;
+            color: #0078d4 !important;
+        }
 
-/* Microsoft Button Icon */
-#AzureADiCRMExchange::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    background-image: url("https://raw.githubusercontent.com/azure-ad-b2c/html-templates/ab88fb13b9494db95ef52a0caaeaa75838dc63b3/templates/src/idp_logos/colored/microsoft.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    vertical-align: middle;
-}
+        #AzureADiCRMExchange:hover {
+            background: #0078d4 !important;
+            color: white !important;
+        }
 
-/* LinkedIn Button Icon */
-#LinkedInExchange::before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z' fill='%230077b5'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    vertical-align: middle;
-}
+        #LinkedInExchange {
+            border-color: #0077b5 !important;
+            color: #0077b5 !important;
+        }
 
-/* Change button text */
-#AzureADiCRMExchange {
-    position: relative;
-}
-#AzureADiCRMExchange span {
-    display: none; /* Hide original text if any */
-}
-#AzureADiCRMExchange::after {
-    content: "Login with Microsoft";
-    display: inline;
-}
-
-#LinkedInExchange {
-    position: relative;
-}
-#LinkedInExchange span {
-    display: none; /* Hide original text if any */
-}
-#LinkedInExchange::after {
-    content: "Login with LinkedIn";
-    display: inline;
-}
-
-/* Hover states for icons */
-#AzureADiCRMExchange:hover::before {
-    background-image: url("https://raw.githubusercontent.com/azure-ad-b2c/html-templates/ab88fb13b9494db95ef52a0caaeaa75838dc63b3/templates/src/idp_logos/colored/microsoft.svg");
-}
-
-#LinkedInExchange:hover::before {
-    background-image: url("https://raw.githubusercontent.com/azure-ad-b2c/html-templates/ab88fb13b9494db95ef52a0caaeaa75838dc63b3/templates/src/idp_logos/colored/linkedin.svg");
-}
-
+        #LinkedInExchange:hover {
+            background: #0077b5 !important;
+            color: white !important;
+        }
 
         /* Enhanced Divider */
         .divider {
@@ -557,7 +516,7 @@
             border: none !important;
             padding: 12px 24px !important;
             border-radius: 10px !important;
-            font-size: 13px !important;
+            font-size: 14px !important;
             font-weight: 600 !important;
             cursor: pointer !important;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -811,6 +770,122 @@
         .shake {
             animation: shake 0.5s ease-in-out;
         }
+
+        /* Notification System */
+        .custom-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            animation: slideInDown 0.4s ease-out forwards;
+            max-width: 400px;
+            font-weight: 500;
+        }
+
+        .custom-notification.success {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.9) 0%, rgba(21, 128, 61, 0.9) 100%);
+            color: white;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .custom-notification.error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(185, 28, 28, 0.9) 100%);
+            color: white;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .custom-notification.info {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(29, 78, 216, 0.9) 100%);
+            color: white;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-content i {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideOutUp {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Enhanced button transitions for progressive display */
+        #email_ver_but_verify,
+        #email_ver_but_resend {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        /* Verification code input enhancement */
+        input[id*="verificationCode"],
+        input[id*="verification_code"] {
+            border: 2px solid #e2e8f0 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        input[id*="verificationCode"]:focus,
+        input[id*="verification_code"]:focus {
+            border-color: #667eea !important;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+        }
+
+        /* Step indicator for verification process */
+        .verification-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            font-size: 14px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .verification-step i {
+            margin-right: 10px;
+            color: #667eea;
+        }
+
+        /* Loading state improvements */
+        .working {
+            width: 16px !important;
+            height: 16px !important;
+            border: 2px solid rgba(255,255,255,0.3) !important;
+            border-radius: 50% !important;
+            border-top-color: white !important;
+            animation: spin 1s linear infinite !important;
+            margin-right: 8px !important;
+            display: inline-block !important;
+        }
     </style>
 </head>
 
@@ -911,8 +986,132 @@
             $("*").removeAttr("placeholder");
         });
 
-        // Enhanced functionality
+        // Enhanced functionality with progressive button display
         document.addEventListener('DOMContentLoaded', function() {
+            // Progressive button display for verification flow
+            function setupVerificationFlow() {
+                const sendBtn = document.getElementById('email_ver_but_send');
+                const verifyBtn = document.getElementById('email_ver_but_verify');
+                const resendBtn = document.getElementById('email_ver_but_resend');
+                
+                if (sendBtn) {
+                    // Initially hide verify and resend buttons
+                    if (verifyBtn) {
+                        verifyBtn.style.display = 'none';
+                        verifyBtn.style.opacity = '0';
+                    }
+                    if (resendBtn) {
+                        resendBtn.style.display = 'none';
+                        resendBtn.style.opacity = '0';
+                    }
+                    
+                    // Show verify and resend buttons after send is clicked
+                    sendBtn.addEventListener('click', function() {
+                        // Add loading state
+                        this.innerHTML = '<span class="working"></span>Sending...';
+                        this.style.pointerEvents = 'none';
+                        this.style.opacity = '0.7';
+                        
+                        // After a short delay, show the other buttons
+                        setTimeout(() => {
+                            // Hide the send button
+                            this.style.display = 'none';
+                            
+                            // Show verify and resend buttons with animation
+                            if (verifyBtn) {
+                                verifyBtn.style.display = 'inline-block';
+                                verifyBtn.style.animation = 'slideInUp 0.4s ease-out forwards';
+                                setTimeout(() => {
+                                    verifyBtn.style.opacity = '1';
+                                }, 100);
+                            }
+                            
+                            if (resendBtn) {
+                                resendBtn.style.display = 'inline-block';
+                                resendBtn.style.animation = 'slideInUp 0.4s ease-out 0.1s forwards';
+                                setTimeout(() => {
+                                    resendBtn.style.opacity = '1';
+                                }, 200);
+                            }
+                            
+                            // Show verification code input if it exists
+                            const verificationInput = document.querySelector('input[id*="verificationCode"], input[id*="verification_code"]');
+                            if (verificationInput) {
+                                const inputContainer = verificationInput.closest('.localAccountForm');
+                                if (inputContainer) {
+                                    inputContainer.style.animation = 'slideInUp 0.4s ease-out 0.2s forwards';
+                                    inputContainer.style.opacity = '1';
+                                }
+                            }
+                        }, 1500); // 1.5 second delay to simulate sending
+                    });
+                }
+                
+                // Handle resend button click
+                if (resendBtn) {
+                    resendBtn.addEventListener('click', function() {
+                        this.innerHTML = '<span class="working"></span>Resending...';
+                        this.style.pointerEvents = 'none';
+                        this.style.opacity = '0.7';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = 'Send new code';
+                            this.style.pointerEvents = 'auto';
+                            this.style.opacity = '1';
+                            
+                            // Show success message
+                            showNotification('Verification code sent successfully!', 'success');
+                        }, 1500);
+                    });
+                }
+                
+                // Handle verify button click
+                if (verifyBtn) {
+                    verifyBtn.addEventListener('click', function() {
+                        const verificationInput = document.querySelector('input[id*="verificationCode"], input[id*="verification_code"]');
+                        if (verificationInput && !verificationInput.value.trim()) {
+                            showNotification('Please enter the verification code', 'error');
+                            verificationInput.focus();
+                            return;
+                        }
+                        
+                        this.innerHTML = '<span class="working"></span>Verifying...';
+                        this.style.pointerEvents = 'none';
+                        this.style.opacity = '0.7';
+                    });
+                }
+            }
+            
+            // Notification system
+            function showNotification(message, type = 'info') {
+                // Remove existing notifications
+                const existingNotification = document.querySelector('.custom-notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                
+                const notification = document.createElement('div');
+                notification.className = `custom-notification ${type}`;
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Auto remove after 3 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.style.animation = 'slideOutUp 0.3s ease-in forwards';
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 300);
+                    }
+                }, 3000);
+            }
+            
             // Remove all bullet points from any content
             function removeBulletPoints() {
                 const allElements = document.querySelectorAll('*');
@@ -953,7 +1152,24 @@
                 }
             }
 
-     
+            // Enhanced social buttons
+            function enhanceSocialButtons() {
+                const microsoftBtn = document.getElementById('AzureADiCRMExchange');
+                const linkedinBtn = document.getElementById('LinkedInExchange');
+
+                if (microsoftBtn) {
+                    microsoftBtn.innerHTML = '<i class="fab fa-microsoft" style="margin-right: 10px; font-size: 16px;"></i>Continue with Microsoft';
+                    microsoftBtn.style.backgroundImage = 'none';
+                }
+
+                if (linkedinBtn) {
+                    linkedinBtn.innerHTML = '<i class="fab fa-linkedin" style="margin-right: 10px; font-size: 16px;"></i>Continue with LinkedIn';
+                    linkedinBtn.style.backgroundImage = 'none';
+                }
+
+                addDivider();
+            }
+
             // Wrap buttons in container for better layout
             function wrapButtons() {
                 const buttons = document.querySelectorAll('#next, #email_ver_but_send, #continue, #cancel, #email_ver_but_resend, #email_ver_but_verify');
@@ -1028,13 +1244,17 @@
                 });
             }
 
-            // Run enhancements
+            // Run verification flow setup
             setTimeout(() => {
+                setupVerificationFlow();
+                enhanceSocialButtons();
                 removeBulletPoints();
                 wrapButtons();
             }, 1000);
             
             setInterval(() => {
+                setupVerificationFlow();
+                enhanceSocialButtons();
                 removeBulletPoints();
                 wrapButtons();
             }, 2000);
