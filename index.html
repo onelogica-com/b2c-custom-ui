@@ -342,6 +342,35 @@
             font-weight: 500;
         }
 
+        /* REMOVE ALL BULLET POINTS */
+        li::marker,
+        li::before,
+        ul li::marker,
+        ul li::before,
+        ol li::marker,
+        ol li::before {
+            display: none !important;
+            content: none !important;
+        }
+
+        ul, ol {
+            list-style: none !important;
+            list-style-type: none !important;
+        }
+
+        /* Hide bullet points in any text content */
+        .api_container ul,
+        .api_container ol,
+        .api_container li {
+            list-style: none !important;
+            list-style-type: none !important;
+        }
+
+        .api_container li::before {
+            display: none !important;
+            content: none !important;
+        }
+
         /* Enhanced Social Login Buttons */
         .social-section {
             margin-bottom: 35px;
@@ -350,12 +379,12 @@
         .accountButton {
             background: white !important;
             border: 2px solid #e2e8f0 !important;
-            border-radius: 16px !important;
-            padding: 18px 24px !important;
-            margin: 12px 0 !important;
+            border-radius: 12px !important;
+            padding: 14px 20px !important;
+            margin: 10px 0 !important;
             width: 100% !important;
             height: auto !important;
-            font-size: 16px !important;
+            font-size: 15px !important;
             font-weight: 600 !important;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
             position: relative !important;
@@ -367,59 +396,40 @@
             color: #475569 !important;
             cursor: pointer !important;
             text-decoration: none !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-        }
-
-        .accountButton::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .accountButton:hover::before {
-            left: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
         }
 
         .accountButton:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
             border-color: #cbd5e1 !important;
         }
 
         #AzureADiCRMExchange {
             border-color: #0078d4 !important;
             color: #0078d4 !important;
-            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%) !important;
         }
 
         #AzureADiCRMExchange:hover {
-            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%) !important;
+            background: #0078d4 !important;
             color: white !important;
-            border-color: #0078d4 !important;
         }
 
         #LinkedInExchange {
             border-color: #0077b5 !important;
             color: #0077b5 !important;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
         }
 
         #LinkedInExchange:hover {
-            background: linear-gradient(135deg, #0077b5 0%, #005885 100%) !important;
+            background: #0077b5 !important;
             color: white !important;
-            border-color: #0077b5 !important;
         }
 
         /* Enhanced Divider */
         .divider {
             display: flex;
             align-items: center;
-            margin: 35px 0;
+            margin: 30px 0;
             position: relative;
         }
 
@@ -427,15 +437,15 @@
         .divider::after {
             content: '';
             flex: 1;
-            height: 2px;
+            height: 1px;
             background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
         }
 
         .divider span {
-            padding: 0 24px;
+            padding: 0 20px;
             color: #64748b;
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 500;
             background: white;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -443,17 +453,24 @@
 
         /* Enhanced Form Inputs */
         .localAccountForm {
-            margin-bottom: 28px !important;
+            margin-bottom: 24px !important;
             position: relative;
         }
 
         label {
-            font-size: 15px !important;
+            font-size: 14px !important;
             font-weight: 600 !important;
             color: #374151 !important;
-            margin-bottom: 10px !important;
+            margin-bottom: 8px !important;
             display: block !important;
             letter-spacing: 0.3px;
+        }
+
+        /* Remove bullet points from labels */
+        label::before,
+        label::marker {
+            display: none !important;
+            content: none !important;
         }
 
         input[type="text"],
@@ -462,14 +479,14 @@
         #reenterPassword,
         #newPassword {
             width: 100% !important;
-            padding: 18px 20px !important;
+            padding: 14px 16px !important;
             border: 2px solid #e2e8f0 !important;
-            border-radius: 12px !important;
-            font-size: 16px !important;
+            border-radius: 10px !important;
+            font-size: 15px !important;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
             background: #f8fafc !important;
             box-shadow: none !important;
-            margin-top: 8px !important;
+            margin-top: 6px !important;
             height: auto !important;
             font-weight: 500 !important;
             color: #1e293b !important;
@@ -483,20 +500,11 @@
             outline: none !important;
             border-color: #667eea !important;
             background: white !important;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1) !important;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
             transform: translateY(-1px) !important;
         }
 
-        input[type="text"]::placeholder,
-        #signInName::placeholder,
-        #password::placeholder,
-        #reenterPassword::placeholder,
-        #newPassword::placeholder {
-            color: #94a3b8 !important;
-            font-weight: 400 !important;
-        }
-
-        /* Enhanced Submit Button */
+        /* REFINED SUBMIT BUTTONS - SMALLER AND MORE PROFESSIONAL */
         #next,
         #email_ver_but_send,
         #continue,
@@ -506,56 +514,49 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
             color: white !important;
             border: none !important;
-            padding: 18px 32px !important;
-            border-radius: 12px !important;
-            font-size: 16px !important;
-            font-weight: 700 !important;
+            padding: 12px 24px !important;
+            border-radius: 10px !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
             cursor: pointer !important;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            margin-top: 20px !important;
-            width: 100% !important;
+            margin-top: 16px !important;
+            width: auto !important;
+            min-width: 140px !important;
+            max-width: 200px !important;
             height: auto !important;
-            min-width: auto !important;
             position: relative !important;
             overflow: hidden !important;
-            letter-spacing: 0.5px !important;
-            text-transform: uppercase !important;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+            letter-spacing: 0.3px !important;
+            text-transform: none !important;
+            display: inline-block !important;
+            margin-right: 12px !important;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
         }
 
-        #next::before,
-        #email_ver_but_send::before,
-        #continue::before,
-        #cancel::before,
-        #email_ver_but_resend::before,
-        #email_ver_but_verify::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s ease;
+        /* CANCEL BUTTON - DIFFERENT STYLING */
+        #cancel {
+            background: white !important;
+            color: #64748b !important;
+            border: 2px solid #e2e8f0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
         }
 
-        #next:hover::before,
-        #email_ver_but_send:hover::before,
-        #continue:hover::before,
-        #cancel:hover::before,
-        #email_ver_but_resend:hover::before,
-        #email_ver_but_verify:hover::before {
-            left: 100%;
+        #cancel:hover {
+            background: #f8fafc !important;
+            border-color: #cbd5e1 !important;
+            color: #475569 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
         }
 
         #next:hover,
         #email_ver_but_send:hover,
         #continue:hover,
-        #cancel:hover,
         #email_ver_but_resend:hover,
         #email_ver_but_verify:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
         }
 
         #next:active,
@@ -567,6 +568,15 @@
             transform: translateY(0px) !important;
         }
 
+        /* Button Container for Better Layout */
+        .button-container {
+            display: flex !important;
+            gap: 12px !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            margin-top: 20px !important;
+        }
+
         .helpLink {
             display: none !important;
         }
@@ -574,16 +584,16 @@
         /* Enhanced Error Styling */
         .error {
             color: #ef4444 !important;
-            font-weight: 600 !important;
-            font-size: 14px !important;
-            margin-top: 8px !important;
+            font-weight: 500 !important;
+            font-size: 13px !important;
+            margin-top: 6px !important;
             animation: errorSlide 0.3s ease-out !important;
         }
 
         @keyframes errorSlide {
             from {
                 opacity: 0;
-                transform: translateY(-10px);
+                transform: translateY(-8px);
             }
             to {
                 opacity: 1;
@@ -595,7 +605,7 @@
         a {
             color: #667eea !important;
             text-decoration: none !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
             transition: all 0.2s ease !important;
         }
 
@@ -606,13 +616,13 @@
 
         /* Enhanced Loading Animation */
         .working {
-            width: 20px !important;
-            height: 20px !important;
+            width: 16px !important;
+            height: 16px !important;
             border: 2px solid rgba(255,255,255,0.3) !important;
             border-radius: 50% !important;
             border-top-color: white !important;
             animation: spin 1s linear infinite !important;
-            margin-right: 10px !important;
+            margin-right: 8px !important;
             display: inline-block !important;
             background: none !important;
         }
@@ -701,16 +711,16 @@
                 font-size: 28px;
             }
             .accountButton {
-                padding: 16px 20px !important;
-                font-size: 15px !important;
+                padding: 12px 16px !important;
+                font-size: 14px !important;
             }
             input[type="text"],
             #signInName,
             #password,
             #reenterPassword,
             #newPassword {
-                padding: 16px 18px !important;
-                font-size: 15px !important;
+                padding: 12px 14px !important;
+                font-size: 14px !important;
             }
             #next,
             #email_ver_but_send,
@@ -718,8 +728,9 @@
             #cancel,
             #email_ver_but_resend,
             #email_ver_but_verify {
-                padding: 16px 24px !important;
-                font-size: 15px !important;
+                padding: 10px 20px !important;
+                font-size: 13px !important;
+                min-width: 120px !important;
             }
         }
 
@@ -730,7 +741,7 @@
         .localAccountForm:nth-child(1) { animation: slideInUp 0.6s ease-out 0.4s both; }
         .localAccountForm:nth-child(2) { animation: slideInUp 0.6s ease-out 0.5s both; }
         .localAccountForm:nth-child(3) { animation: slideInUp 0.6s ease-out 0.6s both; }
-        #next { animation: slideInUp 0.6s ease-out 0.7s both; }
+        .button-container { animation: slideInUp 0.6s ease-out 0.7s both; }
 
         @keyframes slideInUp {
             from {
@@ -745,19 +756,19 @@
 
         /* Focus Within Animation */
         .localAccountForm:focus-within {
-            transform: scale(1.02);
+            transform: scale(1.01);
             transition: transform 0.2s ease;
         }
 
         /* Shake animation for errors */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
-            20%, 40%, 60%, 80% { transform: translateX(8px); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
         }
 
         .shake {
-            animation: shake 0.6s ease-in-out;
+            animation: shake 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -861,6 +872,34 @@
 
         // Enhanced functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Remove all bullet points from any content
+            function removeBulletPoints() {
+                const allElements = document.querySelectorAll('*');
+                allElements.forEach(el => {
+                    if (el.style) {
+                        el.style.listStyle = 'none';
+                        el.style.listStyleType = 'none';
+                    }
+                });
+
+                // Remove bullet point characters from text content
+                const textNodes = document.createTreeWalker(
+                    document.body,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+
+                let node;
+                while (node = textNodes.nextNode()) {
+                    if (node.nodeValue) {
+                        node.nodeValue = node.nodeValue.replace(/^[\s]*•[\s]*/gm, '');
+                        node.nodeValue = node.nodeValue.replace(/^[\s]*\*[\s]*/gm, '');
+                        node.nodeValue = node.nodeValue.replace(/^[\s]*-[\s]*/gm, '');
+                    }
+                }
+            }
+
             // Add divider after social buttons
             function addDivider() {
                 const socialButtons = document.querySelectorAll('.accountButton');
@@ -879,16 +918,31 @@
                 const linkedinBtn = document.getElementById('LinkedInExchange');
 
                 if (microsoftBtn) {
-                    microsoftBtn.innerHTML = '<i class="fab fa-microsoft" style="margin-right: 12px; font-size: 18px;"></i>Continue with Microsoft';
+                    microsoftBtn.innerHTML = '<i class="fab fa-microsoft" style="margin-right: 10px; font-size: 16px;"></i>Continue with Microsoft';
                     microsoftBtn.style.backgroundImage = 'none';
                 }
 
                 if (linkedinBtn) {
-                    linkedinBtn.innerHTML = '<i class="fab fa-linkedin" style="margin-right: 12px; font-size: 18px;"></i>Continue with LinkedIn';
+                    linkedinBtn.innerHTML = '<i class="fab fa-linkedin" style="margin-right: 10px; font-size: 16px;"></i>Continue with LinkedIn';
                     linkedinBtn.style.backgroundImage = 'none';
                 }
 
                 addDivider();
+            }
+
+            // Wrap buttons in container for better layout
+            function wrapButtons() {
+                const buttons = document.querySelectorAll('#next, #email_ver_but_send, #continue, #cancel, #email_ver_but_resend, #email_ver_but_verify');
+                if (buttons.length > 0) {
+                    const firstButton = buttons[0];
+                    const container = document.createElement('div');
+                    container.className = 'button-container';
+                    
+                    firstButton.parentNode.insertBefore(container, firstButton);
+                    buttons.forEach(button => {
+                        container.appendChild(button);
+                    });
+                }
             }
 
             // Enhanced loading state for submit button
@@ -907,7 +961,7 @@
                 input.addEventListener('focus', function() {
                     const form = this.closest('.localAccountForm');
                     if (form) {
-                        form.style.transform = 'scale(1.02)';
+                        form.style.transform = 'scale(1.01)';
                         form.style.transition = 'transform 0.2s ease';
                     }
                 });
@@ -931,9 +985,13 @@
                                 formContainer.classList.add('shake');
                                 setTimeout(() => {
                                     formContainer.classList.remove('shake');
-                                }, 600);
+                                }, 500);
                             }
                         }
+                        
+                        // Remove bullet points whenever content changes
+                        removeBulletPoints();
+                        wrapButtons();
                     }
                 });
             });
@@ -947,32 +1005,20 @@
             }
 
             // Run enhancements
-            setTimeout(enhanceSocialButtons, 1000);
-            setInterval(enhanceSocialButtons, 2000);
+            setTimeout(() => {
+                enhanceSocialButtons();
+                removeBulletPoints();
+                wrapButtons();
+            }, 1000);
+            
+            setInterval(() => {
+                enhanceSocialButtons();
+                removeBulletPoints();
+                wrapButtons();
+            }, 2000);
 
             // Add smooth scroll behavior
             document.documentElement.style.scrollBehavior = 'smooth';
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.localAccountForm, .form-header, .social-section');
-            animatedElements.forEach(el => observer.observe(el));
         });
     </script>
 </body>
